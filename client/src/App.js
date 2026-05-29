@@ -157,7 +157,7 @@ const askQuestion = async () => {
   try {
 
     const res = await axios.post(
-      "http://localhost:5000/chat",
+      "https://krishi-mitra-ai-backend.onrender.com/chat",
       {
         question,
       }
@@ -221,7 +221,7 @@ const askQuestion = async () => {
     try {
 
       const res = await axios.get(
-        `http://localhost:5000/weather/${city}`
+        `https://krishi-mitra-ai-backend.onrender.com/weather/${city}`
       );
 
       setWeather(res.data);
@@ -241,7 +241,7 @@ const getSchemes = async () => {
   try {
 
     const res = await axios.get(
-      "http://localhost:5000/government-schemes"
+      "https://krishi-mitra-ai-backend.onrender.com/government-schemes"
     );
 
     setSchemes(res.data.reply);
@@ -261,7 +261,7 @@ const getSchemes = async () => {
     try {
 
       const res = await axios.post(
-        "http://localhost:5000/crop-recommend",
+        "https://krishi-mitra-ai-backend.onrender.com/crop-recommend",
         {
           soilType,
           temperature,
@@ -296,7 +296,7 @@ const getSchemes = async () => {
     try {
 
       const res = await axios.post(
-        "http://localhost:5000/detect-disease",
+        "https://krishi-mitra-ai-backend.onrender.com/detect-disease",
         formData
       );
 
@@ -319,7 +319,7 @@ const getMarketPrice = async () => {
 
   try {
     const res = await axios.get(
-      `http://localhost:5000/market-price/${cropName}`
+      `https://krishi-mitra-ai-backend.onrender.com/market-price/${cropName}`
     );
 
     setMarketPrice(res.data.reply);
@@ -337,7 +337,7 @@ const getFertilizerAdvice = async () => {
   try {
 
     const res = await axios.post(
-      "http://localhost:5000/fertilizer",
+      "https://krishi-mitra-ai-backend.onrender.com/fertilizer",
       {
         crop: fertilizerCrop,
         soil: fertilizerSoil,
