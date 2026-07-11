@@ -143,23 +143,14 @@ app.get(
       const data =
         weatherRes.data;
 
-      res.json({
-
-        city: data.name,
-
-        temperature:
-          data.main.temp,
-
-        humidity:
-          data.main.humidity,
-
-        condition:
-          data.weather[0]
-            .description,
-
-        windSpeed:
-          data.wind.speed,
-      });
+res.json({
+  city: data.name,
+  temperature: data.main.temp,
+  humidity: data.main.humidity,
+  condition: data.weather[0].description,
+  windSpeed: data.wind.speed,
+  icon: data.weather[0].icon,
+});
 
     } catch (error) {
 

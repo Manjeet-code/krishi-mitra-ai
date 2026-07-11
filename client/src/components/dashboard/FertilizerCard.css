@@ -1,0 +1,818 @@
+/* =====================================================
+   FERTILIZER CARD
+   PREMIUM UI - PART 1
+===================================================== */
+
+:root{
+
+--primary:#22c55e;
+--primary-dark:#15803d;
+--glass:rgba(255,255,255,.75);
+--border:rgba(255,255,255,.45);
+--text:#1e293b;
+--text-light:#64748b;
+
+}
+
+/* ================= SECTION ================= */
+
+.fertilizer-section{
+
+width:100%;
+
+padding:35px;
+
+border-radius:30px;
+
+background:linear-gradient(135deg,#f8fffb,#eefcf3);
+
+border:1px solid var(--border);
+
+backdrop-filter:blur(22px);
+
+box-shadow:0 20px 45px rgba(15,23,42,.08);
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.fertilizer-section::before{
+
+content:"";
+
+position:absolute;
+
+width:320px;
+
+height:320px;
+
+top:-120px;
+
+right:-120px;
+
+border-radius:50%;
+
+background:radial-gradient(circle,
+rgba(34,197,94,.18),
+transparent 70%);
+
+}
+
+.fertilizer-section::after{
+
+content:"";
+
+position:absolute;
+
+width:250px;
+
+height:250px;
+
+left:-100px;
+
+bottom:-100px;
+
+border-radius:50%;
+
+background:radial-gradient(circle,
+rgba(16,185,129,.12),
+transparent 70%);
+
+}
+
+/* ================= HEADER ================= */
+
+.fertilizer-header{
+
+position:relative;
+
+z-index:2;
+
+margin-bottom:35px;
+
+}
+
+.fertilizer-header h2{
+
+font-size:32px;
+
+font-weight:700;
+
+margin-bottom:8px;
+
+color:var(--text);
+
+}
+
+.fertilizer-header p{
+
+font-size:15px;
+
+line-height:1.8;
+
+color:var(--text-light);
+
+}
+
+/* ================= LAYOUT ================= */
+
+.fertilizer-wrapper{
+
+display:grid;
+
+grid-template-columns:380px 1fr;
+
+gap:30px;
+
+position:relative;
+
+z-index:2;
+
+}
+
+/* ================= FORM ================= */
+
+.fertilizer-form{
+
+background:var(--glass);
+
+border-radius:26px;
+
+padding:28px;
+
+border:1px solid rgba(255,255,255,.5);
+
+backdrop-filter:blur(18px);
+
+box-shadow:0 15px 35px rgba(15,23,42,.06);
+
+}
+
+.input-group{
+
+display:flex;
+
+flex-direction:column;
+
+margin-bottom:22px;
+
+}
+
+.input-group label{
+
+font-size:15px;
+
+font-weight:600;
+
+margin-bottom:10px;
+
+color:#334155;
+
+}
+
+.input-group input{
+
+height:58px;
+
+padding:0 18px;
+
+border:none;
+
+outline:none;
+
+border-radius:16px;
+
+background:#f8fafc;
+
+font-size:15px;
+
+transition:.35s;
+
+border:2px solid transparent;
+
+}
+
+.input-group input:focus{
+
+background:white;
+
+border-color:#22c55e;
+
+box-shadow:
+
+0 0 0 5px rgba(34,197,94,.12);
+
+}
+
+/* ================= BUTTON ================= */
+
+.fertilizer-btn{
+
+width:100%;
+
+height:58px;
+
+border:none;
+
+border-radius:18px;
+
+cursor:pointer;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:12px;
+
+font-size:17px;
+
+font-weight:700;
+
+color:white;
+
+background:
+
+linear-gradient(135deg,
+#22c55e,
+#15803d);
+
+transition:.35s;
+
+box-shadow:
+
+0 18px 35px rgba(34,197,94,.35);
+
+}
+
+.fertilizer-btn:hover{
+
+transform:translateY(-4px);
+
+box-shadow:
+
+0 24px 45px rgba(34,197,94,.45);
+
+}
+
+.fertilizer-btn:disabled{
+
+opacity:.65;
+
+cursor:not-allowed;
+
+transform:none;
+
+}
+
+/* =====================================================
+   FERTILIZER CARD
+   PREMIUM UI - PART 2
+===================================================== */
+
+/* =========================
+   RESULT CARD
+========================= */
+
+.fertilizer-result-card{
+
+    position:relative;
+
+    min-height:520px;
+
+    padding:35px;
+
+    border-radius:28px;
+
+    background:rgba(255,255,255,.82);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.5);
+
+    box-shadow:0 18px 45px rgba(15,23,42,.08);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    animation:fadeUp .5s ease;
+
+}
+
+.fertilizer-result-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:280px;
+
+    height:280px;
+
+    top:-120px;
+
+    right:-120px;
+
+    border-radius:50%;
+
+    background:radial-gradient(circle,
+    rgba(34,197,94,.15),
+    transparent 70%);
+
+}
+
+/* =========================
+   PLACEHOLDER
+========================= */
+
+.fertilizer-placeholder{
+
+    text-align:center;
+
+    max-width:380px;
+
+}
+
+.fertilizer-placeholder svg{
+
+    font-size:72px;
+
+    color:#22c55e;
+
+    margin-bottom:20px;
+
+    animation:floatLeaf 3s ease-in-out infinite;
+
+}
+
+.fertilizer-placeholder h3{
+
+    font-size:28px;
+
+    color:#14532d;
+
+    margin-bottom:12px;
+
+}
+
+.fertilizer-placeholder p{
+
+    color:#64748b;
+
+    line-height:1.8;
+
+}
+
+/* =========================
+   LOADING
+========================= */
+
+.fertilizer-loading{
+
+    text-align:center;
+
+}
+
+.loader{
+
+    width:70px;
+
+    height:70px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    border:6px solid #dcfce7;
+
+    border-top:6px solid #22c55e;
+
+    animation:spin 1s linear infinite;
+
+}
+
+.fertilizer-loading h3{
+
+    margin-top:25px;
+
+    color:#166534;
+
+}
+
+.fertilizer-loading p{
+
+    margin-top:10px;
+
+    color:#64748b;
+
+}
+
+/* =========================
+   RESULT
+========================= */
+
+.fertilizer-success{
+
+    width:100%;
+
+}
+
+.fertilizer-result-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.fertilizer-badge{
+
+    background:#dcfce7;
+
+    color:#166534;
+
+    padding:8px 18px;
+
+    border-radius:50px;
+
+    font-size:14px;
+
+    font-weight:700;
+
+}
+
+.fertilizer-status{
+
+    background:#22c55e;
+
+    color:white;
+
+    padding:8px 18px;
+
+    border-radius:50px;
+
+    font-size:14px;
+
+    font-weight:700;
+
+}
+
+.fertilizer-success h2{
+
+    font-size:28px;
+
+    color:#14532d;
+
+    margin-bottom:22px;
+
+}
+
+/* =========================
+   AI RESPONSE
+========================= */
+
+.fertilizer-result-text{
+
+    background:#f8fafc;
+
+    border-left:6px solid #22c55e;
+
+    border-radius:18px;
+
+    padding:24px;
+
+    color:#334155;
+
+    line-height:2;
+
+    font-size:16px;
+
+    white-space:pre-wrap;
+
+    overflow-wrap:anywhere;
+
+    box-shadow:
+    inset 0 0 0 1px rgba(34,197,94,.08);
+
+}
+
+/* Markdown */
+
+.fertilizer-result-text h1,
+.fertilizer-result-text h2,
+.fertilizer-result-text h3{
+
+    color:#166534;
+
+    margin:18px 0 10px;
+
+}
+
+.fertilizer-result-text p{
+
+    margin:12px 0;
+
+}
+
+.fertilizer-result-text ul,
+.fertilizer-result-text ol{
+
+    padding-left:24px;
+
+    margin:16px 0;
+
+}
+
+.fertilizer-result-text li{
+
+    margin:8px 0;
+
+}
+
+.fertilizer-result-text strong{
+
+    color:#15803d;
+
+}
+
+.fertilizer-result-text code{
+
+    background:#e2e8f0;
+
+    padding:4px 8px;
+
+    border-radius:8px;
+
+    font-family:monospace;
+
+}
+
+.fertilizer-result-text pre{
+
+    background:#0f172a;
+
+    color:white;
+
+    padding:20px;
+
+    border-radius:16px;
+
+    overflow:auto;
+
+    margin:20px 0;
+
+}
+
+.fertilizer-result-text table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin:20px 0;
+
+}
+
+.fertilizer-result-text th{
+
+    background:#22c55e;
+
+    color:white;
+
+    padding:12px;
+
+}
+
+.fertilizer-result-text td{
+
+    padding:12px;
+
+    border:1px solid #e5e7eb;
+
+}
+
+/* =========================
+   TIPS
+========================= */
+
+.fertilizer-tips{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:16px;
+
+    margin-top:28px;
+
+}
+
+.tip-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:18px;
+
+    border-radius:16px;
+
+    background:#f8fafc;
+
+    transition:.3s;
+
+    font-weight:600;
+
+}
+
+.tip-card:hover{
+
+    background:#22c55e;
+
+    color:white;
+
+    transform:translateY(-4px);
+
+    box-shadow:0 15px 30px rgba(34,197,94,.25);
+
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.fertilizer-reset-btn{
+
+    margin-top:30px;
+
+    width:100%;
+
+    height:56px;
+
+    border:none;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    background:linear-gradient(135deg,#22c55e,#15803d);
+
+    transition:.35s;
+
+    box-shadow:0 18px 35px rgba(34,197,94,.35);
+
+}
+
+.fertilizer-reset-btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 24px 45px rgba(34,197,94,.45);
+
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+@keyframes spin{
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+@keyframes floatLeaf{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-8px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:992px){
+
+    .fertilizer-wrapper{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .fertilizer-result-card{
+
+        min-height:auto;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .fertilizer-section{
+
+        padding:20px;
+
+    }
+
+    .fertilizer-header h2{
+
+        font-size:24px;
+
+    }
+
+    .fertilizer-form,
+
+    .fertilizer-result-card{
+
+        padding:22px;
+
+    }
+
+    .fertilizer-result-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:12px;
+
+    }
+
+    .fertilizer-tips{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .fertilizer-result-text{
+
+        padding:18px;
+
+        font-size:15px;
+
+        line-height:1.8;
+
+    }
+
+}

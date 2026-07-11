@@ -1,0 +1,1077 @@
+/* =====================================================
+   DASHBOARD BANNER
+   PREMIUM STARTUP HERO UI - PART 1
+===================================================== */
+
+:root{
+
+  --green:#22c55e;
+  --green-dark:#15803d;
+  --text:#0f172a;
+  --muted:#64748b;
+
+}
+
+
+/* =========================
+   MAIN BANNER
+========================= */
+
+.banner{
+
+  width:100%;
+
+  min-height:520px;
+
+  padding:45px;
+
+  border-radius:35px;
+
+  position:relative;
+
+  overflow:hidden;
+
+  display:grid;
+
+  grid-template-columns:1.1fr .9fr;
+
+  gap:40px;
+
+
+  background:
+
+  linear-gradient(
+    135deg,
+    #f0fdf4,
+    #ffffff,
+    #ecfdf5
+  );
+
+
+  box-shadow:
+
+  0 25px 60px rgba(15,23,42,.08);
+
+  border:1px solid rgba(255,255,255,.6);
+
+
+}
+
+
+
+/* =========================
+   BACKGROUND GLOW
+========================= */
+
+
+.banner-glow{
+
+  position:absolute;
+
+  border-radius:50%;
+
+  filter:blur(80px);
+
+  opacity:.45;
+
+}
+
+
+
+.glow-one{
+
+  width:320px;
+
+  height:320px;
+
+  background:#22c55e;
+
+  top:-150px;
+
+  right:-100px;
+
+}
+
+
+
+.glow-two{
+
+  width:250px;
+
+  height:250px;
+
+  background:#86efac;
+
+  bottom:-120px;
+
+  left:-100px;
+
+}
+
+
+
+/* =========================
+   LEFT CONTENT
+========================= */
+
+
+.banner-left{
+
+  position:relative;
+
+  z-index:2;
+
+}
+
+
+
+.welcome{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  padding:8px 18px;
+
+  border-radius:50px;
+
+  background:#dcfce7;
+
+  color:#166534;
+
+  font-size:14px;
+
+  font-weight:700;
+
+  margin-bottom:20px;
+
+}
+
+
+
+.banner-left h1{
+
+  font-size:48px;
+
+  line-height:1.2;
+
+  color:var(--text);
+
+  margin-bottom:18px;
+
+  font-weight:800;
+
+}
+
+
+
+.banner-left h1 span{
+
+  background:
+
+  linear-gradient(
+    135deg,
+    #22c55e,
+    #15803d
+  );
+
+   -webkit-background-clip:text;
+
+  -webkit-text-fill-color:transparent;
+
+}
+
+
+
+.banner-left p{
+
+  max-width:620px;
+
+  color:var(--muted);
+
+  font-size:17px;
+
+  line-height:1.8;
+
+  margin-bottom:30px;
+
+}
+
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+
+.banner-buttons{
+
+  display:flex;
+
+  gap:18px;
+
+  margin-bottom:35px;
+
+}
+
+
+
+.primary-btn,
+.secondary-btn{
+
+
+  height:55px;
+
+  padding:0 28px;
+
+  border-radius:18px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:12px;
+
+  cursor:pointer;
+
+  font-size:16px;
+
+  font-weight:700;
+
+  transition:.35s;
+
+}
+
+
+
+.primary-btn{
+
+  border:none;
+
+  color:white;
+
+  background:
+
+  linear-gradient(
+    135deg,
+    #22c55e,
+    #15803d
+  );
+
+
+  box-shadow:
+
+  0 18px 35px rgba(34,197,94,.35);
+
+}
+
+
+
+.primary-btn:hover{
+
+  transform:translateY(-5px);
+
+  box-shadow:
+
+  0 25px 45px rgba(34,197,94,.45);
+
+}
+
+
+
+.secondary-btn{
+
+  background:white;
+
+  color:#15803d;
+
+  border:2px solid #22c55e;
+
+}
+
+
+
+.secondary-btn:hover{
+
+  background:#22c55e;
+
+  color:white;
+
+  transform:translateY(-5px);
+
+}
+
+
+
+/* =========================
+   STATS
+========================= */
+
+
+.banner-stats{
+
+  display:flex;
+
+  gap:15px;
+
+  flex-wrap:wrap;
+
+}
+
+
+
+.stat-box{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  padding:15px 18px;
+
+  border-radius:18px;
+
+  background:
+
+  rgba(255,255,255,.75);
+
+
+  backdrop-filter:blur(15px);
+
+
+  border:1px solid rgba(255,255,255,.5);
+
+
+  box-shadow:
+
+  0 10px 25px rgba(15,23,42,.05);
+
+
+}
+
+
+
+.stat-box svg{
+
+  font-size:24px;
+
+  color:#22c55e;
+
+}
+
+
+
+.stat-box h3{
+
+  font-size:18px;
+
+  color:#0f172a;
+
+}
+
+
+
+.stat-box span{
+
+  font-size:12px;
+
+  color:#64748b;
+
+}
+
+/* =====================================================
+   DASHBOARD BANNER
+   PREMIUM STARTUP HERO UI - PART 2
+===================================================== */
+
+
+/* =========================
+   RIGHT AI CARD
+========================= */
+
+.banner-right{
+
+  position:relative;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  z-index:2;
+
+}
+
+
+.hero-ai-card{
+
+  width:100%;
+
+  max-width:430px;
+
+  padding:28px;
+
+  border-radius:32px;
+
+  background:
+
+  rgba(255,255,255,.72);
+
+  backdrop-filter:blur(25px);
+
+  border:1px solid rgba(255,255,255,.5);
+
+  box-shadow:
+
+  0 25px 60px rgba(15,23,42,.12);
+
+  animation:cardFloat 5s ease-in-out infinite;
+
+}
+
+
+
+/* =========================
+   AI HEADER
+========================= */
+
+
+.ai-card-header{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:15px;
+
+  padding-bottom:25px;
+
+  border-bottom:1px solid rgba(148,163,184,.2);
+
+}
+
+
+
+.ai-icon{
+
+  width:55px;
+
+  height:55px;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  border-radius:18px;
+
+  font-size:28px;
+
+  background:
+
+  linear-gradient(
+    135deg,
+    #22c55e,
+    #15803d
+  );
+
+  box-shadow:
+
+  0 15px 30px rgba(34,197,94,.3);
+
+}
+
+
+
+.ai-card-header h3{
+
+  font-size:20px;
+
+  color:#0f172a;
+
+}
+
+
+
+.ai-card-header span{
+
+  font-size:13px;
+
+  color:#64748b;
+
+}
+
+
+
+/* ONLINE STATUS */
+
+.online-status{
+
+  margin-left:auto;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:7px;
+
+  font-size:13px;
+
+  font-weight:700;
+
+  color:#15803d;
+
+}
+
+
+
+.online-status span{
+
+  width:9px;
+
+  height:9px;
+
+  background:#22c55e;
+
+  border-radius:50%;
+
+  animation:pulse 1.5s infinite;
+
+}
+
+
+
+/* =========================
+   AI BODY
+========================= */
+
+
+.ai-card-body{
+
+  padding-top:25px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:16px;
+
+}
+
+
+
+/* GLASS ITEMS */
+
+.glass-item{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:18px;
+
+  padding:18px;
+
+  border-radius:20px;
+
+  background:
+
+  rgba(248,250,252,.8);
+
+  transition:.35s;
+
+}
+
+
+
+.glass-item:hover{
+
+  transform:translateX(8px);
+
+  background:#ecfdf5;
+
+}
+
+
+
+.glass-item svg{
+
+  font-size:25px;
+
+  color:#22c55e;
+
+}
+
+
+
+.glass-item h4{
+
+  font-size:16px;
+
+  color:#0f172a;
+
+  margin-bottom:5px;
+
+}
+
+
+
+.glass-item p{
+
+  font-size:13px;
+
+  color:#64748b;
+
+}
+
+
+
+/* =========================
+   FARMING SCORE
+========================= */
+
+
+.farming-score{
+
+  margin-top:10px;
+
+  padding:20px;
+
+  border-radius:22px;
+
+  background:
+
+  linear-gradient(
+    135deg,
+    #f0fdf4,
+    #dcfce7
+  );
+
+}
+
+
+
+.score-header{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:15px;
+
+}
+
+
+
+.score-header span{
+
+  font-size:14px;
+
+  font-weight:600;
+
+  color:#166534;
+
+}
+
+
+
+.score-header strong{
+
+  font-size:22px;
+
+  color:#15803d;
+
+}
+
+
+
+.score-bar{
+
+  width:100%;
+
+  height:10px;
+
+  background:#bbf7d0;
+
+  border-radius:20px;
+
+  overflow:hidden;
+
+}
+
+
+
+.score-progress{
+
+  height:100%;
+
+  width:92%;
+
+  border-radius:20px;
+
+  background:
+
+  linear-gradient(
+    90deg,
+    #22c55e,
+    #15803d
+  );
+
+  animation:progressLoad 1.5s ease;
+
+}
+
+
+
+.farming-score p{
+
+  margin-top:12px;
+
+  font-size:12px;
+
+  color:#64748b;
+
+}
+
+
+
+/* =========================
+   AI MESSAGE
+========================= */
+
+
+.ai-message{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  padding:16px;
+
+  border-radius:18px;
+
+  background:#ffffff;
+
+  border-left:5px solid #22c55e;
+
+}
+
+
+
+.ai-message span{
+
+  font-size:24px;
+
+}
+
+
+
+.ai-message p{
+
+  font-size:14px;
+
+  color:#475569;
+
+  line-height:1.6;
+
+}
+
+
+
+/* =========================
+   FLOATING CARDS
+========================= */
+
+
+.floating-card{
+
+  position:absolute;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+
+  padding:12px 18px;
+
+  border-radius:50px;
+
+  background:white;
+
+  box-shadow:
+
+  0 15px 35px rgba(15,23,42,.12);
+
+  font-size:14px;
+
+  font-weight:700;
+
+  color:#166534;
+
+  animation:float 4s ease-in-out infinite;
+
+}
+
+
+
+.card-one{
+
+  top:20px;
+
+  right:-40px;
+
+}
+
+
+
+.card-two{
+
+  bottom:120px;
+
+  left:-40px;
+
+  animation-delay:1s;
+
+}
+
+
+
+.card-three{
+
+  bottom:30px;
+
+  right:-20px;
+
+  animation-delay:2s;
+
+}
+
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+
+@keyframes cardFloat{
+
+  0%{
+
+    transform:translateY(0);
+
+  }
+
+  50%{
+
+    transform:translateY(-12px);
+
+  }
+
+  100%{
+
+    transform:translateY(0);
+
+  }
+
+}
+
+
+
+@keyframes float{
+
+  0%{
+
+    transform:translateY(0);
+
+  }
+
+  50%{
+
+    transform:translateY(-12px);
+
+  }
+
+  100%{
+
+    transform:translateY(0);
+
+  }
+
+}
+
+
+
+@keyframes progressLoad{
+
+  from{
+
+    width:0;
+
+  }
+
+  to{
+
+    width:92%;
+
+  }
+
+}
+
+
+
+@keyframes pulse{
+
+  0%{
+
+    transform:scale(1);
+
+    opacity:1;
+
+  }
+
+  50%{
+
+    transform:scale(1.4);
+
+    opacity:.5;
+
+  }
+
+  100%{
+
+    transform:scale(1);
+
+    opacity:1;
+
+  }
+
+}
+
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+
+@media(max-width:1100px){
+
+  .banner{
+
+    grid-template-columns:1fr;
+
+    padding:35px;
+
+  }
+
+
+  .banner-right{
+
+    margin-top:40px;
+
+  }
+
+
+  .floating-card{
+
+    display:none;
+
+  }
+
+}
+
+
+
+@media(max-width:768px){
+
+
+  .banner{
+
+    padding:25px;
+
+    border-radius:25px;
+
+  }
+
+
+  .banner-left h1{
+
+    font-size:34px;
+
+  }
+
+
+  .banner-left p{
+
+    font-size:15px;
+
+  }
+
+
+  .banner-buttons{
+
+    flex-direction:column;
+
+  }
+
+
+  .primary-btn,
+  .secondary-btn{
+
+    width:100%;
+
+  }
+
+
+  .banner-stats{
+
+    flex-direction:column;
+
+  }
+
+
+  .stat-box{
+
+    width:100%;
+
+  }
+
+
+  .hero-ai-card{
+
+    padding:20px;
+
+  }
+
+
+}
+
+
+
+@media(max-width:480px){
+
+  .ai-card-header{
+
+    flex-wrap:wrap;
+
+  }
+
+
+  .online-status{
+
+    margin-left:0;
+
+  }
+
+
+}

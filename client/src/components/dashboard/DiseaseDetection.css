@@ -1,0 +1,744 @@
+/* =====================================================
+   DISEASE DETECTION
+   PREMIUM UI - PART 1
+===================================================== */
+
+:root{
+    --primary:#22c55e;
+    --primary-dark:#15803d;
+    --bg:#f8fffb;
+    --glass:rgba(255,255,255,.75);
+    --border:rgba(255,255,255,.45);
+    --text:#1e293b;
+    --text-light:#64748b;
+}
+
+.disease-section{
+    width:100%;
+    padding:35px;
+    border-radius:30px;
+    background:linear-gradient(135deg,#f8fffb,#eefcf3);
+    border:1px solid var(--border);
+    backdrop-filter:blur(25px);
+    box-shadow:0 20px 45px rgba(15,23,42,.08);
+    position:relative;
+    overflow:hidden;
+}
+
+.disease-section::before{
+    content:"";
+    position:absolute;
+    width:320px;
+    height:320px;
+    top:-120px;
+    right:-120px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(34,197,94,.18),transparent 70%);
+}
+
+.disease-section::after{
+    content:"";
+    position:absolute;
+    width:250px;
+    height:250px;
+    left:-80px;
+    bottom:-80px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(16,185,129,.12),transparent 70%);
+}
+
+/* ================= HEADER ================= */
+
+.disease-header{
+    position:relative;
+    z-index:2;
+    margin-bottom:35px;
+}
+
+.disease-header h2{
+    font-size:32px;
+    font-weight:700;
+    color:var(--text);
+    margin-bottom:8px;
+}
+
+.disease-header p{
+    color:var(--text-light);
+    line-height:1.8;
+}
+
+/* ================= LAYOUT ================= */
+
+.disease-wrapper{
+    display:grid;
+    grid-template-columns:380px 1fr;
+    gap:30px;
+    position:relative;
+    z-index:2;
+}
+
+/* ================= UPLOAD CARD ================= */
+
+.upload-card{
+    background:var(--glass);
+    border-radius:28px;
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.5);
+    padding:28px;
+    box-shadow:0 15px 35px rgba(15,23,42,.06);
+}
+
+.upload-area{
+    height:330px;
+    border:2px dashed #22c55e;
+    border-radius:22px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    text-align:center;
+    transition:.35s;
+    background:#f8fffb;
+}
+
+.upload-area:hover{
+    transform:translateY(-4px);
+    background:#ecfdf5;
+}
+
+.upload-area svg{
+    font-size:70px;
+    color:#22c55e;
+    margin-bottom:20px;
+}
+
+.upload-area h3{
+    font-size:24px;
+    color:#14532d;
+    margin-bottom:10px;
+}
+
+.upload-area p{
+    color:#64748b;
+    margin-bottom:22px;
+}
+
+.upload-area button{
+    border:none;
+    padding:14px 28px;
+    border-radius:50px;
+    background:linear-gradient(135deg,#22c55e,#15803d);
+    color:white;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    pointer-events:none;
+}
+
+/* ================= IMAGE PREVIEW ================= */
+
+.preview-area{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.preview-area img{
+    width:100%;
+    height:330px;
+    object-fit:cover;
+    border-radius:22px;
+    box-shadow:0 15px 35px rgba(0,0,0,.1);
+}
+
+.change-btn{
+    border:none;
+    background:#f8fafc;
+    border-radius:16px;
+    padding:14px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.3s;
+}
+
+.change-btn:hover{
+    background:#22c55e;
+    color:white;
+}
+
+/* ================= DETECT BUTTON ================= */
+
+.detect-btn{
+    margin-top:25px;
+    width:100%;
+    height:58px;
+    border:none;
+    border-radius:18px;
+    cursor:pointer;
+    background:linear-gradient(135deg,#22c55e,#15803d);
+    color:white;
+    font-size:17px;
+    font-weight:700;
+    transition:.35s;
+    box-shadow:0 18px 35px rgba(34,197,94,.35);
+}
+
+.detect-btn:hover:not(:disabled){
+    transform:translateY(-4px);
+    box-shadow:0 24px 45px rgba(34,197,94,.45);
+}
+
+.detect-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+/* =====================================================
+   DISEASE DETECTION
+   PREMIUM UI - PART 2
+===================================================== */
+
+/* =========================
+   RESULT CARD
+========================= */
+
+.result-card{
+
+    position:relative;
+
+    min-height:520px;
+
+    padding:35px;
+
+    border-radius:28px;
+
+    background:rgba(255,255,255,.82);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.5);
+
+    box-shadow:0 18px 45px rgba(15,23,42,.08);
+
+    overflow:hidden;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    animation:fadeUp .5s ease;
+
+}
+
+.result-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+
+    height:260px;
+
+    right:-100px;
+
+    top:-100px;
+
+    border-radius:50%;
+
+    background:radial-gradient(circle,
+    rgba(34,197,94,.15),
+    transparent 70%);
+
+}
+
+/* =========================
+   PLACEHOLDER
+========================= */
+
+.placeholder{
+
+    text-align:center;
+
+    max-width:380px;
+
+}
+
+.placeholder svg{
+
+    font-size:75px;
+
+    color:#22c55e;
+
+    margin-bottom:22px;
+
+    animation:floatLeaf 3s ease-in-out infinite;
+
+}
+
+.placeholder h3{
+
+    font-size:30px;
+
+    color:#14532d;
+
+    margin-bottom:14px;
+
+}
+
+.placeholder p{
+
+    color:#64748b;
+
+    line-height:1.8;
+
+}
+
+/* =========================
+   LOADING
+========================= */
+
+.loading-box{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+}
+
+.loader{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    border:6px solid #dcfce7;
+
+    border-top:6px solid #22c55e;
+
+    animation:spin 1s linear infinite;
+
+}
+
+.loading-box h3{
+
+    margin-top:25px;
+
+    color:#15803d;
+
+}
+
+.loading-box p{
+
+    margin-top:10px;
+
+    color:#64748b;
+
+}
+
+/* =========================
+   RESULT SUCCESS
+========================= */
+
+.result-success{
+
+    width:100%;
+
+}
+
+.result-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.result-badge{
+
+    background:#dcfce7;
+
+    color:#166534;
+
+    padding:8px 18px;
+
+    border-radius:50px;
+
+    font-size:14px;
+
+    font-weight:700;
+
+}
+
+.confidence{
+
+    background:#22c55e;
+
+    color:white;
+
+    padding:8px 18px;
+
+    border-radius:50px;
+
+    font-size:14px;
+
+    font-weight:700;
+
+}
+
+.result-success h2{
+
+    font-size:28px;
+
+    margin-bottom:22px;
+
+    color:#14532d;
+
+}
+
+/* =========================
+   AI OUTPUT
+========================= */
+
+.result-content{
+
+    background:#f8fafc;
+
+    border-left:6px solid #22c55e;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    color:#334155;
+
+    line-height:2;
+
+    font-size:16px;
+
+    white-space:pre-wrap;
+
+    overflow-wrap:anywhere;
+
+    box-shadow:inset 0 0 0 1px rgba(34,197,94,.08);
+
+}
+
+/* Markdown Support */
+
+.result-content h1,
+.result-content h2,
+.result-content h3{
+
+    margin:18px 0 10px;
+
+    color:#166534;
+
+}
+
+.result-content p{
+
+    margin:12px 0;
+
+}
+
+.result-content ul,
+.result-content ol{
+
+    padding-left:24px;
+
+    margin:15px 0;
+
+}
+
+.result-content li{
+
+    margin:8px 0;
+
+}
+
+.result-content strong{
+
+    color:#15803d;
+
+}
+
+.result-content code{
+
+    background:#e2e8f0;
+
+    padding:3px 8px;
+
+    border-radius:6px;
+
+    font-family:monospace;
+
+}
+
+.result-content pre{
+
+    background:#0f172a;
+
+    color:white;
+
+    padding:18px;
+
+    border-radius:14px;
+
+    overflow:auto;
+
+    margin:18px 0;
+
+}
+
+.result-content table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin:18px 0;
+
+}
+
+.result-content th{
+
+    background:#22c55e;
+
+    color:white;
+
+    padding:12px;
+
+}
+
+.result-content td{
+
+    padding:12px;
+
+    border:1px solid #e2e8f0;
+
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.result-footer{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:15px;
+
+    margin-top:28px;
+
+}
+
+.footer-card{
+
+    background:#f8fafc;
+
+    border-radius:16px;
+
+    padding:16px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    transition:.3s;
+
+    font-weight:600;
+
+}
+
+.footer-card:hover{
+
+    background:#22c55e;
+
+    color:white;
+
+    transform:translateY(-4px);
+
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.new-scan-btn{
+
+    margin-top:30px;
+
+    width:100%;
+
+    height:56px;
+
+    border:none;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    background:linear-gradient(135deg,#22c55e,#15803d);
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    transition:.35s;
+
+    box-shadow:0 18px 35px rgba(34,197,94,.35);
+
+}
+
+.new-scan-btn:hover{
+
+    transform:translateY(-4px);
+
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+@keyframes spin{
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+@keyframes floatLeaf{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-8px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:992px){
+
+    .disease-wrapper{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .result-card{
+
+        min-height:auto;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .disease-section{
+
+        padding:20px;
+
+    }
+
+    .disease-header h2{
+
+        font-size:24px;
+
+    }
+
+    .upload-card,
+
+    .result-card{
+
+        padding:22px;
+
+    }
+
+    .preview-area img{
+
+        height:240px;
+
+    }
+
+    .result-header{
+
+        flex-direction:column;
+
+        gap:12px;
+
+        align-items:flex-start;
+
+    }
+
+    .result-footer{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
