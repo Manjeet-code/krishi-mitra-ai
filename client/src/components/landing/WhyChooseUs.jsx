@@ -1,5 +1,4 @@
 import {
-  FaCheckCircle,
   FaRobot,
   FaCloudSun,
   FaMicrophone,

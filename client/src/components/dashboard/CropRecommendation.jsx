@@ -1,4 +1,4 @@
-import { FaSeedling, FaLeaf, FaCloudRain } from "react-icons/fa";
+import { FaSeedling, FaLeaf } from "react-icons/fa";
 import "./CropRecommendation.css";
 import ReactMarkdown from "react-markdown";
 

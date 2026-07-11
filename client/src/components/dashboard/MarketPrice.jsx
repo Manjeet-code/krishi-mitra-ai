@@ -1,6 +1,5 @@
 import "./MarketPrice.css";
-import { FaSearch, FaChartLine, FaLeaf } from "react-icons/fa";
-import { useState } from "react";
+import { FaSearch, FaChartLine } from "react-icons/fa";
 import ReactMarkdown from "react-markdown";
 
 const MarketPrice = ({

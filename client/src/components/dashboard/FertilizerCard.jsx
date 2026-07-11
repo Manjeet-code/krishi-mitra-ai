@@ -1,5 +1,5 @@
 import "./FertilizerCard.css";
-import { FaSeedling, FaFlask, FaLeaf } from "react-icons/fa";
+import { FaFlask, FaLeaf } from "react-icons/fa";
 import ReactMarkdown from "react-markdown";
 
 const FertilizerCard = ({

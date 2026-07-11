@@ -16,12 +16,6 @@ import {
 
 import { useLocation } from "react-router-dom";
 
-export default function DashboardSidebar() {
-
-  const location = useLocation();
-
-  const [activeSection, setActiveSection] = useState("chat");
-
   const menuItems = [
 
     {
@@ -67,6 +61,14 @@ export default function DashboardSidebar() {
     },
 
   ];
+
+export default function DashboardSidebar() {
+
+  const location = useLocation();
+
+  const [activeSection, setActiveSection] = useState("chat");
+
+
 
   /* ==========================
       Smooth Scroll

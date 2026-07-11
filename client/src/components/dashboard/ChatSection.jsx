@@ -11,7 +11,6 @@ import {
   FaVolumeUp,
   FaLeaf,
   FaTrash,
-  FaLightbulb,
 } from "react-icons/fa";
 
 export default function ChatSection({

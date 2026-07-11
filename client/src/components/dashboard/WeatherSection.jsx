@@ -14,8 +14,6 @@ import {
 export default function WeatherSection() {
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState(null);
-  const [weatherLoading, setWeatherLoading] = useState(false);
-const [weatherError, setWeatherError] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
