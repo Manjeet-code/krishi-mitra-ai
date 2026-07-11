@@ -7,7 +7,12 @@ import {
   FaEnvelope,
 } from "react-icons/fa";
 
+import { useNavigate } from "react-router-dom";
+
+import { FaHome } from "react-icons/fa";
+
 export default function DashboardFooter() {
+  const navigate = useNavigate();
   return (
     <footer className="km-footer">
 
@@ -30,6 +35,8 @@ export default function DashboardFooter() {
 
         <div className="km-footer-links">
 
+          
+
           <a href="#chat">AI Chat</a>
 
           <a href="#weather">Weather</a>
@@ -45,6 +52,13 @@ export default function DashboardFooter() {
           <a href="#schemes">Govt Schemes</a>
 
         </div>
+        <button
+  className="km-footer-home"
+  onClick={() => navigate("/")}
+>
+  <FaHome />
+  <span>Home</span>
+</button>
 
       </div>
 
