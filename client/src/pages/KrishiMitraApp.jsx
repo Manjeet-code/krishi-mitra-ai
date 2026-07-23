@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import { API_URL } from "../utils/constants";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
@@ -191,7 +192,7 @@ const askQuestion = async (customQuestion = null) => {
   try {
 
     const res = await axios.post(
-      "http://localhost:5000/chat",
+      `${API_URL}/chat`,
       {
         question: finalQuestion,
       }
@@ -248,7 +249,7 @@ const getWeather = async () => {
 
   try {
     const { data } = await axios.get(
-      `http://localhost:5000/weather/${city}`
+      `${API_URL}/weather/${city}`
     );
 
     setWeather(data);
@@ -266,7 +267,7 @@ const recommendCrop = async () => {
   try {
 
     const res = await axios.post(
-      "http://localhost:5000/crop-recommend",
+      `${API_URL}/crop-recommend`,
       {
         soilType,
         temperature,
@@ -299,7 +300,7 @@ const detectDisease = async () => {
   try {
 
     const res = await axios.post(
-      "http://localhost:5000/detect-disease",
+      `${API_URL}/detect-disease`,
       formData
     );
 
@@ -324,7 +325,7 @@ const getMarketPrice = async () => {
   try {
 
     const res = await axios.get(
-      `http://localhost:5000/market-price/${cropName}`
+      `${API_URL}/market-price/${cropName}`
     );
 
     setMarketPrice(res.data.reply);
@@ -346,7 +347,7 @@ const getFertilizerAdvice = async () => {
   try {
 
     const res = await axios.post(
-      "http://localhost:5000/fertilizer",
+      `${API_URL}/fertilizer`,
       {
         crop: fertilizerCrop,
         soil: fertilizerSoil,
@@ -373,7 +374,7 @@ const getSchemes = async () => {
   try {
 
     const res = await axios.get(
-      "http://localhost:5000/government-schemes"
+      `${API_URL}/government-schemes`
     );
 
     setSchemes(res.data.reply);

@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
+import { API_URL } from "../utils/constants";
 
 export const AuthContext = createContext();
 
@@ -17,7 +18,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (formData) => {
-    const res = await axios.post("http://localhost:5000/api/auth/login", formData);
+    const res = await axios.post(`${API_URL}/api/auth/login`, formData);
     if (res.data) {
       localStorage.setItem("user", JSON.stringify(res.data));
       setUser(res.data);
@@ -26,7 +27,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const register = async (formData) => {
-    const res = await axios.post("http://localhost:5000/api/auth/register", formData);
+    const res = await axios.post(`${API_URL}/api/auth/register`, formData);
     if (res.data) {
       localStorage.setItem("user", JSON.stringify(res.data));
       setUser(res.data);
@@ -40,12 +41,12 @@ export const AuthProvider = ({ children }) => {
   };
 
   const forgotPassword = async (email) => {
-    const res = await axios.post("http://localhost:5000/api/auth/forgotpassword", { email });
+    const res = await axios.post(`${API_URL}/api/auth/forgotpassword`, { email });
     return res;
   };
 
   const resetPassword = async (resetToken, password) => {
-    const res = await axios.put(`http://localhost:5000/api/auth/resetpassword/${resetToken}`, { password });
+    const res = await axios.put(`${API_URL}/api/auth/resetpassword/${resetToken}`, { password });
     if (res.data && res.data.token) {
       // Not automatically logging them in based on this backend flow,
       // but we could. For now just return res.

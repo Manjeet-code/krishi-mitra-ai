@@ -1,3 +1,7 @@
+export const API_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:5000' 
+    : 'https://krishi-mitra-ai-backend.onrender.com';
+
 export const APP = {
 
     name: "KrishiMitra AI",

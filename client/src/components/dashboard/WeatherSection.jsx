@@ -1,6 +1,7 @@
 import "./WeatherSection.css";
 import { useState } from "react";
 import axios from "axios";
+import { API_URL } from "../../utils/constants";
 
 import {
   FaSearch,
@@ -26,7 +27,7 @@ export default function WeatherSection() {
       setError("");
 
       const { data } = await axios.get(
-        `http://localhost:5000/weather/${city}`
+        `${API_URL}/weather/${city}`
       );
 
       setWeather(data);
