@@ -825,21 +825,15 @@
 
 
 .card-one{
-
   top:20px;
-
-  right:-40px;
-
+  right:-10px;
 }
 
 
 
 .card-two{
-
   bottom:120px;
-
-  left:-40px;
-
+  left:-10px;
   animation-delay:1s;
 
 }
@@ -847,10 +841,8 @@
 
 
 .card-three{
-
   bottom:30px;
-
-  right:-20px;
+  right:-10px;
 
   animation-delay:2s;
 

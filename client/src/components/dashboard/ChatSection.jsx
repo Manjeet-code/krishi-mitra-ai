@@ -1,6 +1,7 @@
 import "./ChatSection.css";
 import ReactMarkdown from "react-markdown";
 import { useEffect, useRef } from "react";
+import Logo from "../common/Logo";
 
 import {
   FaPaperPlane,
@@ -9,7 +10,6 @@ import {
   FaUserCircle,
   FaCopy,
   FaVolumeUp,
-  FaLeaf,
   FaTrash,
 } from "react-icons/fa";
 
@@ -101,17 +101,11 @@ const askSuggestion = (text) => {
 <div className="chat-header">
 
   <div className="header-left">
-
     <div className="ai-logo">
-
-      <FaLeaf />
-
+      <Logo />
     </div>
-
     <div>
-
-      <h2>Krishi Mitra AI</h2>
-
+      <h2>KrishiMitra AI</h2>
       <p>Powered by Artificial Intelligence</p>
 
     </div>
@@ -152,7 +146,7 @@ const askSuggestion = (text) => {
 
 <FaRobot size={60} />
 
-<h3>Welcome to Krishi Mitra AI</h3>
+<h3>Welcome to KrishiMitra AI</h3>
 
 <p>
   Ask anything about crops, fertilizers,

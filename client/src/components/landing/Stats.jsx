@@ -5,7 +5,7 @@ const stats = [
     icon: <FaUsers />,
     number: "25K+",
     title: "Active Farmers",
-    desc: "Farmers using Krishi Mitra AI daily",
+    desc: "Farmers using KrishiMitra AI daily",
   },
   {
     icon: <FaLeaf />,
@@ -77,7 +77,7 @@ const Stats = () => {
               lineHeight: "32px",
             }}
           >
-            Krishi Mitra AI is transforming agriculture by providing
+            KrishiMitra AI is transforming agriculture by providing
             intelligent recommendations, live weather updates and
             AI-powered assistance to thousands of farmers.
           </p>

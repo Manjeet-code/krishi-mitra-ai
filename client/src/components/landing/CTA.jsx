@@ -83,7 +83,7 @@ const CTA = () => {
             fontSize: "18px",
           }}
         >
-          Join thousands of farmers using Krishi Mitra AI to improve crop
+          Join thousands of farmers using KrishiMitra AI to improve crop
           productivity, detect diseases, monitor weather, and get real-time
           mandi prices.
         </p>

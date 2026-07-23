@@ -1,5 +1,12 @@
-body {
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body, html {
   margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  max-width: 100vw;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -28,7 +35,11 @@ body{
     background:#fff;
 }
 
-@media(max-width:900px){
+.mobile-menu-icon {
+  display: none;
+}
+
+@media(max-width:768px){
 
 .desktop-menu{
 display:none!important;
@@ -50,6 +61,80 @@ cursor:pointer;
 .social-icon:hover {
   transform: translateY(-5px);
   color: #16a34a;
+}
+
+/* ==========================================
+   GLOBAL SAAS HOVER & ANIMATIONS
+========================================== */
+
+button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.dashboard-section, 
+.crop-form, 
+.crop-result-card, 
+.weather-card, 
+.info-card, 
+.chat-section {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.dashboard-section:hover, 
+.crop-form:hover, 
+.crop-result-card:hover, 
+.weather-card:hover, 
+.chat-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(15, 23, 42, 0.08) !important;
+}
+
+svg {
+  transition: transform 0.3s ease;
+}
+
+button:hover svg, 
+.info-card:hover svg {
+  transform: scale(1.15);
+}
+
+/* ==========================================
+   MARKDOWN COMPACT LISTS (AI OUTPUTS)
+========================================== */
+
+.ReactMarkdown ul, 
+.ReactMarkdown ol,
+.scheme-result-text ul,
+.scheme-result-text ol,
+.crop-result-text ul,
+.crop-result-text ol,
+.disease-result-text ul,
+.disease-result-text ol,
+.chat-message ul,
+.chat-message ol,
+.market-result-text ul,
+.market-result-text ol {
+  margin: 10px 0 !important;
+  padding-left: 20px !important;
+}
+
+.ReactMarkdown li,
+.scheme-result-text li,
+.crop-result-text li,
+.disease-result-text li,
+.chat-message li,
+.market-result-text li {
+  margin-bottom: 6px !important;
+  line-height: 1.5 !important;
 }
 
 html {

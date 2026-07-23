@@ -9,7 +9,7 @@ const testimonials = [
     location: "Bihar",
     image: "👨‍🌾",
     review:
-      "Krishi Mitra AI helped me choose the right crop according to the season. My farming decisions are now much more confident.",
+      "KrishiMitra AI helped me choose the right crop according to the season. My farming decisions are now much more confident.",
   },
   {
     name: "Suresh Patel",
@@ -75,7 +75,7 @@ const Testimonials = () => {
               lineHeight: "30px",
             }}
           >
-            Thousands of farmers trust Krishi Mitra AI to make
+            Thousands of farmers trust KrishiMitra AI to make
             smarter farming decisions every day.
           </p>
         </div>

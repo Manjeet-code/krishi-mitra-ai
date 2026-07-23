@@ -15,7 +15,7 @@ const steps = [
   {
     icon: <FaBrain />,
     title: "AI Understands",
-    desc: "Krishi Mitra AI analyzes your crop, soil and farming requirements.",
+    desc: "KrishiMitra AI analyzes your crop, soil and farming requirements.",
   },
   {
     icon: <FaCloudSun />,
@@ -81,7 +81,7 @@ const HowItWorks = () => {
               fontSize: "18px",
             }}
           >
-            Krishi Mitra AI combines Artificial Intelligence, weather forecasting,
+            KrishiMitra AI combines Artificial Intelligence, weather forecasting,
             and agricultural knowledge to provide instant guidance.
           </p>
         </div>

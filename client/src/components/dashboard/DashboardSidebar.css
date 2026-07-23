@@ -747,3 +747,44 @@
   }
 
 }
+
+/* =========================
+   MOBILE MENU OVERLAY & BUTTONS
+========================= */
+
+.km-sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.km-sidebar-overlay.show {
+  display: block;
+  opacity: 1;
+}
+
+.mobile-close-sidebar {
+  display: none;
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #64748b;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .mobile-close-sidebar {
+    display: block;
+  }
+}

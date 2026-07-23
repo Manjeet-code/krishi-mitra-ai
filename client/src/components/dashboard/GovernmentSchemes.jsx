@@ -209,7 +209,13 @@ const GovernmentScheme = ({
 
     <div className="scheme-result-text">
 
-      <ReactMarkdown>
+      <ReactMarkdown
+        components={{
+          a: ({ node, ...props }) => (
+            <a {...props} target="_blank" rel="noopener noreferrer" />
+          ),
+        }}
+      >
 
         {schemes}
 

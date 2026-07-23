@@ -1,204 +1,197 @@
 /* ==========================================
-   PREMIUM WEATHER SECTION
+   PREMIUM SaaS WEATHER SECTION
 ========================================== */
 
 .weather-section{
     width:100%;
-    padding:30px;
-    border-radius:28px;
-    background:linear-gradient(135deg,#f8fffc,#eefbf3);
-    border:1px solid rgba(255,255,255,.4);
-    backdrop-filter:blur(25px);
-    box-shadow:0 20px 45px rgba(15,23,42,.08);
+    padding:35px;
+    border-radius:24px;
+    background:#ffffff;
+    border:1px solid #e2e8f0;
+    box-shadow:0 4px 6px -1px rgba(0,0,0,.05), 0 2px 4px -1px rgba(0,0,0,.03);
 }
 
 /* ================= Header ================= */
-
 .weather-header{
-    margin-bottom:28px;
+    margin-bottom:24px;
 }
-
 .weather-header h2{
     margin:0;
-    font-size:30px;
+    font-size:24px;
     font-weight:700;
-    color:#14532d;
+    color:#0f172a;
 }
-
 .weather-header p{
-    margin-top:8px;
+    margin-top:6px;
     color:#64748b;
-    font-size:15px;
+    font-size:14px;
 }
 
 /* ================= Search ================= */
-
 .weather-search{
     display:flex;
     align-items:center;
-    gap:15px;
+    gap:12px;
     margin-bottom:30px;
 }
-
 .weather-search input{
     flex:1;
-    height:58px;
-    border:none;
-    outline:none;
-    border-radius:18px;
-    padding:0 22px;
-    font-size:16px;
-    background:rgba(255,255,255,.8);
-    backdrop-filter:blur(15px);
-    box-shadow:0 10px 25px rgba(0,0,0,.05);
-    transition:.3s;
+    height:52px;
+    border:1px solid #cbd5e1;
+    border-radius:12px;
+    padding:0 20px;
+    font-size:15px;
+    background:#f8fafc;
+    color:#334155;
+    transition:all .2s ease;
 }
-
 .weather-search input:focus{
-    box-shadow:
-    0 0 0 4px rgba(34,197,94,.15),
-    0 15px 30px rgba(34,197,94,.18);
+    outline:none;
+    background:#ffffff;
+    border-color:#22c55e;
+    box-shadow:0 0 0 3px rgba(34,197,94,.15);
 }
-
 .weather-search button{
-    width:58px;
-    height:58px;
+    width:52px;
+    height:52px;
     border:none;
-    border-radius:18px;
+    border-radius:12px;
     cursor:pointer;
     color:#fff;
-    font-size:20px;
-    background:linear-gradient(135deg,#22c55e,#15803d);
-    transition:.3s;
-    box-shadow:0 12px 30px rgba(34,197,94,.35);
+    font-size:18px;
+    background:#16a34a;
+    transition:all .2s ease;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
-
 .weather-search button:hover{
-    transform:translateY(-4px) scale(1.05);
+    background:#15803d;
+    transform:translateY(-2px);
+    box-shadow:0 4px 12px rgba(22,163,74,.25);
 }
 
 /* ================= Loading ================= */
-
 .weather-loading{
     text-align:center;
-    padding:50px;
+    padding:40px;
 }
-
 .loader{
-    width:60px;
-    height:60px;
+    width:45px;
+    height:45px;
     border-radius:50%;
-    border:5px solid #d1fae5;
-    border-top:5px solid #22c55e;
+    border:4px solid #d1fae5;
+    border-top:4px solid #22c55e;
     margin:auto;
     animation:spin 1s linear infinite;
 }
-
 .weather-loading h3{
-    margin-top:18px;
-    color:#15803d;
+    margin-top:15px;
+    color:#64748b;
+    font-size:15px;
+    font-weight:500;
 }
 
 /* ================= Error ================= */
-
 .weather-error{
     margin-top:20px;
-    padding:18px;
-    border-radius:18px;
-    background:#fee2e2;
+    padding:16px;
+    border-radius:12px;
+    background:#fef2f2;
+    border:1px solid #fecaca;
     color:#dc2626;
     text-align:center;
-    font-weight:600;
+    font-weight:500;
+    font-size:14px;
 }
 
 /* ================= Weather Card ================= */
-
 .weather-card{
-    margin-top:25px;
-    background:rgba(255,255,255,.75);
-    backdrop-filter:blur(20px);
-    border-radius:28px;
+    background:#f8fafc;
+    border-radius:20px;
     padding:30px;
-    border:1px solid rgba(255,255,255,.4);
-    box-shadow:0 20px 45px rgba(15,23,42,.08);
-    animation:fadeUp .5s ease;
+    border:1px solid #e2e8f0;
+    animation:fadeUp .4s ease-out;
 }
-
 .weather-top{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:25px;
+    margin-bottom:20px;
 }
-
 .weather-top h2{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:8px;
     margin:0;
-    font-size:28px;
-    color:#14532d;
+    font-size:22px;
+    color:#0f172a;
+    font-weight:700;
 }
-
+.weather-top h2 svg{
+    color:#3b82f6;
+    font-size:20px;
+}
 .weather-top p{
-    margin-top:8px;
+    margin-top:4px;
     color:#64748b;
+    font-size:15px;
+    text-transform:capitalize;
 }
-
 .weather-top img{
-    width:95px;
-    height:95px;
-    animation:floatIcon 3s ease-in-out infinite;
+    width:80px;
+    height:80px;
+    filter:drop-shadow(0 8px 16px rgba(0,0,0,.1));
 }
 
 /* ================= Temperature ================= */
-
 .weather-temp{
-    font-size:70px;
-    font-weight:700;
-    color:#95f0b7;
+    font-size:56px;
+    font-weight:800;
+    color:#0f172a;
     margin-bottom:30px;
+    letter-spacing:-1px;
 }
 
 /* ================= Grid ================= */
-
 .weather-info{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:18px;
+    gap:16px;
 }
-
 .info-card{
-    background:#71b1f1;
-    border-radius:20px;
-    padding:22px;
-    text-align:center;
-    transition:.3s;
-    border:1px solid #eef2f7;
+    background:#ffffff;
+    border-radius:16px;
+    padding:20px;
+    border:1px solid #e2e8f0;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    transition:all .2s ease;
 }
-
 .info-card:hover{
-    transform:translateY(-6px);
-    background:#22c55e;
-    color:rgb(240, 37, 37);
-    box-shadow:0 20px 35px rgba(34,197,94,.28);
+    border-color:#cbd5e1;
+    box-shadow:0 4px 12px rgba(0,0,0,.05);
+    transform:translateY(-2px);
 }
-
 .info-card svg{
-    font-size:28px;
+    font-size:24px;
+    color:#16a34a;
     margin-bottom:12px;
 }
-
 .info-card span{
-    display:block;
-    font-size:14px;
-    margin-bottom:8px;
+    font-size:12px;
+    color:#64748b;
+    font-weight:600;
+    margin-bottom:4px;
+    text-transform:uppercase;
+    letter-spacing:.5px;
 }
-
 .info-card h3{
     margin:0;
-    font-size:26px;
+    font-size:20px;
     font-weight:700;
+    color:#0f172a;
 }
 
 /* ================= Animations ================= */

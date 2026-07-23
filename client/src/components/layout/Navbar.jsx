@@ -1,12 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { AuthContext } from "../../context/AuthContext";
+import Logo from "../common/Logo";
 
 const Navbar = () => {
   const navigate = useNavigate();
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { user, logout } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -73,10 +81,12 @@ const scrollToSection = (id) => {
             fontWeight: "700",
             color: "#15803D",
             cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
           }}
           onClick={() => navigate("/")}
         >
-          🌾 Krishi Mitra AI
+          <Logo /> KrishiMitra AI
         </div>
 
         {/* Desktop Menu */}
@@ -112,21 +122,73 @@ const scrollToSection = (id) => {
   </button>
 ))}
 
-          <button
-            onClick={() => navigate("/app")}
-            style={{
-              background: "#16A34A",
-              color: "#fff",
-              border: "none",
-              padding: "13px 30px",
-              borderRadius: "999px",
-              cursor: "pointer",
-              fontWeight: "600",
-              fontSize: "15px",
-            }}
-          >
-            Get Started
-          </button>
+          {user ? (
+            <>
+              <button
+                onClick={() => navigate("/app")}
+                style={{
+                  background: "#16A34A",
+                  color: "#fff",
+                  border: "none",
+                  padding: "13px 30px",
+                  borderRadius: "999px",
+                  cursor: "pointer",
+                  fontWeight: "600",
+                  fontSize: "15px",
+                }}
+              >
+                Go to App
+              </button>
+              <button
+                onClick={handleLogout}
+                style={{
+                  background: "transparent",
+                  color: "#dc2626",
+                  border: "1px solid #dc2626",
+                  padding: "13px 30px",
+                  borderRadius: "999px",
+                  cursor: "pointer",
+                  fontWeight: "600",
+                  fontSize: "15px",
+                }}
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={() => navigate("/login")}
+                style={{
+                  background: "transparent",
+                  color: "#16A34A",
+                  border: "1px solid #16A34A",
+                  padding: "13px 30px",
+                  borderRadius: "999px",
+                  cursor: "pointer",
+                  fontWeight: "600",
+                  fontSize: "15px",
+                }}
+              >
+                Login
+              </button>
+              <button
+                onClick={() => navigate("/register")}
+                style={{
+                  background: "#16A34A",
+                  color: "#fff",
+                  border: "none",
+                  padding: "13px 30px",
+                  borderRadius: "999px",
+                  cursor: "pointer",
+                  fontWeight: "600",
+                  fontSize: "15px",
+                }}
+              >
+                Sign Up
+              </button>
+            </>
+          )}
         </div>
 
         {/* Mobile */}
@@ -147,46 +209,93 @@ const scrollToSection = (id) => {
       {menuOpen && (
         <div
           style={{
+            position: "absolute",
+            top: "85px",
+            left: 0,
+            width: "100%",
             background: "#fff",
             padding: "25px",
             display: "flex",
             flexDirection: "column",
             gap: "20px",
             boxShadow: "0 10px 25px rgba(0,0,0,.1)",
+            borderTop: "1px solid #f1f5f9"
           }}
         >
           {navItems.map((item) => (
             <span
-              key={item}
-              onClick={() =>
-                scrollToSection(
-                  item
-                    .toLowerCase()
-                    .replace(/\s/g, "-")
-                )
-              }
+              key={item.id}
+              onClick={() => scrollToSection(item.id)}
               style={{
                 cursor: "pointer",
                 fontWeight: "500",
               }}
             >
-              {item}
+              {item.name}
             </span>
           ))}
 
-          <button
-            onClick={() => navigate("/app")}
-            style={{
-              background: "#16A34A",
-              color: "#fff",
-              border: "none",
-              padding: "14px",
-              borderRadius: "12px",
-              cursor: "pointer",
-            }}
-          >
-            Get Started
-          </button>
+          {user ? (
+            <>
+              <button
+                onClick={() => navigate("/app")}
+                style={{
+                  background: "#16A34A",
+                  color: "#fff",
+                  border: "none",
+                  padding: "14px",
+                  borderRadius: "12px",
+                  cursor: "pointer",
+                  marginBottom: "10px",
+                }}
+              >
+                Go to App
+              </button>
+              <button
+                onClick={handleLogout}
+                style={{
+                  background: "transparent",
+                  color: "#dc2626",
+                  border: "1px solid #dc2626",
+                  padding: "14px",
+                  borderRadius: "12px",
+                  cursor: "pointer",
+                }}
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={() => navigate("/login")}
+                style={{
+                  background: "transparent",
+                  color: "#16A34A",
+                  border: "1px solid #16A34A",
+                  padding: "14px",
+                  borderRadius: "12px",
+                  cursor: "pointer",
+                  marginBottom: "10px",
+                }}
+              >
+                Login
+              </button>
+              <button
+                onClick={() => navigate("/register")}
+                style={{
+                  background: "#16A34A",
+                  color: "#fff",
+                  border: "none",
+                  padding: "14px",
+                  borderRadius: "12px",
+                  cursor: "pointer",
+                }}
+              >
+                Sign Up
+              </button>
+            </>
+          )}
         </div>
       )}
     </header>

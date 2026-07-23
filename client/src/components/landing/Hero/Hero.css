@@ -634,9 +634,8 @@ HERO VISUAL
 @media(max-width:768px){
 
 .hero-img{
-
-border-radius:20px;
-
+  border-radius:20px;
+  height: 280px;
 }
 
 }

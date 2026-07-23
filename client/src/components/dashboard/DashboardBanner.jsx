@@ -1,4 +1,6 @@
 import "./DashboardBanner.css";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 import {
   FaLeaf,
@@ -10,6 +12,7 @@ import {
 } from "react-icons/fa6";
 
 export default function DashboardBanner() {
+  const { user } = useContext(AuthContext);
 
   const hour = new Date().getHours();
 
@@ -48,7 +51,7 @@ export default function DashboardBanner() {
 
   return (
 
-    <section className="banner">
+    <section id="dashboard" className="banner">
 
 
       {/* Background Effects */}
@@ -64,9 +67,7 @@ export default function DashboardBanner() {
 
 
         <span className="welcome">
-
-          👋 {greeting}, Farmer
-
+          👋 {greeting}, {user?.name || "Farmer"}
         </span>
 
 

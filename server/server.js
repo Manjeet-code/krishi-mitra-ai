@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const connectDB = require("./config/db");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const express = require("express");
@@ -7,7 +7,11 @@ const dotenv = require("dotenv");
 const axios = require("axios");
 const multer = require("multer");
 
+
 dotenv.config();
+
+// Connect to database
+connectDB();
 
 const Groq = require("groq-sdk");
 
@@ -19,10 +23,6 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-
-mongoose.connect("mongodb://127.0.0.1:27017/farmer-ai")
-.then(() => console.log("MongoDB Connected"))
-.catch((err) => console.log(err));
 
 // ======================================
 // GROQ SETUP
@@ -55,13 +55,18 @@ const upload = multer({
 
 
 // ======================================
+// AUTH ROUTES
+// ======================================
+app.use("/api/auth", require("./routes/authRoutes"));
+
+// ======================================
 // HOME ROUTE
 // ======================================
 
 app.get("/", (req, res) => {
 
 res.send(
-  "🌾 Krishi Mitra AI Backend Running"
+  "🌾 KrishiMitra AI Backend Running"
 );
 });
 
@@ -89,10 +94,9 @@ You are an expert agriculture assistant for farmers.
 Instructions:
 - Give clean and professional answers
 - Use headings
-- Use bullet points
-- Keep answers short
+- Format the entire output strictly as a professional bulleted list using markdown.
+- Do not write long paragraphs. Keep it extremely concise.
 - Use simple Hindi or English
-- Use markdown formatting
 `,
           },
 
@@ -180,9 +184,9 @@ Include:
 - Benefits
 - Who can apply
 - Short eligibility
-- Keep answer short and farmer friendly
-
-Format in markdown.
+- MUST INCLUDE the official government website link for each scheme formatted as a clickable Markdown link (e.g. [Visit Official Website](https://example.gov.in))
+- Provide the answer strictly in markdown format using professional bullet points.
+- Do not write long paragraphs. Keep it extremely concise.
 `;
 
     const result =
@@ -252,7 +256,7 @@ Provide:
 3. Fertilizer
 4. Farming Tips
 
-Format answer in markdown.
+Format the output strictly as a professional bulleted list using markdown. Do not use long paragraphs. Keep it extremely concise.
 `;
 
       const chatCompletion =
@@ -321,7 +325,7 @@ Provide:
 3. Application Timing
 4. Important Tips
 
-Keep answer short and farmer friendly.
+Format the output strictly as a professional bulleted list using markdown. Keep answer extremely concise, farmer friendly, and strictly avoid paragraphs.
 `;
 
     const result =
@@ -385,7 +389,7 @@ Format in markdown:
 - Best Market
 - Best Selling Time
 
-Keep answer short and farmer friendly.
+Format the output strictly as a professional bulleted list using markdown. Keep answer extremely concise, farmer friendly, and strictly avoid paragraphs.
 `;
 
     const result =
@@ -492,14 +496,9 @@ app.post(
         message: `
 # 🌿 Plant Disease Detection Result
 
-## 🦠 Disease
-${random.name}
-
-## 📌 Cause
-${random.cause}
-
-## 💊 Treatment
-${random.treatment}
+- **🦠 Disease**: ${random.name}
+- **📌 Cause**: ${random.cause}
+- **💊 Treatment**: ${random.treatment}
 
 ## 🛡 Advice
 - Regular monitoring of crops

@@ -1,5 +1,8 @@
 import "./DashboardSidebar.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import Logo from "../common/Logo";
 
 import {
   FaComments,
@@ -12,12 +15,18 @@ import {
   FaCog,
   FaSignOutAlt,
   FaCircle,
+  FaHome,
+  FaTimes,
 } from "react-icons/fa";
 
 import { useLocation } from "react-router-dom";
 
   const menuItems = [
-
+    {
+      id: "dashboard",
+      label: "Dashboard",
+      icon: <FaHome />,
+    },
     {
       id: "chat",
       label: "AI Chat",
@@ -62,11 +71,13 @@ import { useLocation } from "react-router-dom";
 
   ];
 
-export default function DashboardSidebar() {
+export default function DashboardSidebar({ isSidebarOpen, setIsSidebarOpen }) {
+  const { user, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const location = useLocation();
 
-  const [activeSection, setActiveSection] = useState("chat");
+  const [activeSection, setActiveSection] = useState("dashboard");
 
 
 
@@ -89,9 +100,10 @@ export default function DashboardSidebar() {
       });
 
     }
-
     setActiveSection(id);
-
+    if (setIsSidebarOpen) {
+      setIsSidebarOpen(false);
+    }
   };
 
   /* ==========================
@@ -99,6 +111,9 @@ export default function DashboardSidebar() {
   ========================== */
 
   useEffect(() => {
+
+    const rootElement = document.querySelector('.km-layout__main');
+    if (!rootElement) return;
 
     const observer = new IntersectionObserver(
 
@@ -117,9 +132,9 @@ export default function DashboardSidebar() {
       },
 
       {
-
-        threshold: 0.45,
-
+        root: rootElement,
+        rootMargin: "-20% 0px -40% 0px",
+        threshold: 0,
       }
 
     );
@@ -135,6 +150,13 @@ export default function DashboardSidebar() {
     return () => observer.disconnect();
 
   }, []);
+
+  useEffect(() => {
+    const activeBtn = document.querySelector('.km-sidebar__menu button.active');
+    if (activeBtn) {
+      activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }, [activeSection]);
 
   useEffect(() => {
   if (!location.hash) return;
@@ -156,37 +178,35 @@ export default function DashboardSidebar() {
 }, [location]);
 
   return (
-
-    <aside className="km-sidebar">
+    <>
+      <div 
+        className={`km-sidebar-overlay ${isSidebarOpen ? "show" : ""}`} 
+        onClick={() => setIsSidebarOpen(false)}
+      ></div>
+      <aside className={`km-sidebar ${isSidebarOpen ? "open" : ""}`}>
+        <button 
+          className="mobile-close-sidebar" 
+          onClick={() => setIsSidebarOpen(false)}
+        >
+          <FaTimes />
+        </button>
 
       {/* =====================
             BRAND
       ====================== */}
 
       <div className="km-sidebar__brand">
-
         <div className="km-sidebar__logo">
-
-          🌾
-
+          <Logo />
         </div>
-
         <div>
-
           <h2>
-
-            Krishi Mitra AI
-
+            KrishiMitra AI
           </h2>
-
           <span>
-
             Smart Farming Platform
-
           </span>
-
         </div>
-
       </div>
 
       {/* =====================
@@ -196,16 +216,14 @@ export default function DashboardSidebar() {
       <div className="km-sidebar__profile">
 
         <img
-          src="https://ui-avatars.com/api/?name=Farmer&background=16a34a&color=fff&size=128"
-          alt="Farmer"
+          src={`https://ui-avatars.com/api/?name=${user?.name || "Farmer"}&background=16a34a&color=fff&size=128`}
+          alt="User Profile"
         />
 
         <div>
 
           <h4>
-
-            Welcome Farmer 👋
-
+            Welcome {user?.name ? user.name.split(" ")[0] : "Farmer"} 👋
           </h4>
 
           <p>
@@ -320,6 +338,7 @@ export default function DashboardSidebar() {
 
         <button
           className="footer-btn"
+          onClick={() => window.dispatchEvent(new CustomEvent("open-settings"))}
         >
 
           <FaCog />
@@ -334,6 +353,10 @@ export default function DashboardSidebar() {
 
         <button
           className="footer-btn logout"
+          onClick={() => {
+            logout();
+            navigate("/login");
+          }}
         >
 
           <FaSignOutAlt />
@@ -348,9 +371,8 @@ export default function DashboardSidebar() {
 
       </div>
 
-    </aside>
-
-
+      </aside>
+    </>
 
   );
 

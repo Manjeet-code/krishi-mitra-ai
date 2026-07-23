@@ -114,7 +114,7 @@ const WhyChooseUs = () => {
             }}
           >
             Stop using multiple farming applications.
-            Krishi Mitra AI combines Artificial Intelligence,
+            KrishiMitra AI combines Artificial Intelligence,
             Weather, Voice Technology, Crop Guidance and Market
             Intelligence into one modern platform.
           </p>
@@ -222,7 +222,7 @@ const WhyChooseUs = () => {
               marginBottom: "40px",
             }}
           >
-            Why Farmers Prefer Krishi Mitra AI
+            Why Farmers Prefer KrishiMitra AI
           </h2>
 
           <table
@@ -239,7 +239,7 @@ const WhyChooseUs = () => {
               >
                 <th style={{ padding: "18px" }}>Feature</th>
                 <th>Others</th>
-                <th>Krishi Mitra AI</th>
+                <th>KrishiMitra AI</th>
               </tr>
             </thead>
 
@@ -359,7 +359,7 @@ const WhyChooseUs = () => {
             }}
           >
             Join thousands of farmers already improving their
-            productivity with Krishi Mitra AI.
+            productivity with KrishiMitra AI.
           </p>
 
           <button

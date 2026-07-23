@@ -327,9 +327,8 @@
 .km-user h4{
 
   font-size:14px;
-
   color:#0f172a;
-
+  margin:0;
 }
 
 
@@ -337,11 +336,9 @@
 .km-user p{
 
   font-size:12px;
-
   color:#16a34a;
-
   font-weight:600;
-
+  margin:0;
 }
 
 

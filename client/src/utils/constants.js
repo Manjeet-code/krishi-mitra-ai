@@ -1,6 +1,6 @@
 export const APP = {
 
-    name: "Krishi Mitra AI",
+    name: "KrishiMitra AI",
 
     tagline: "Kisanon Ka Sacha Sathi",
 

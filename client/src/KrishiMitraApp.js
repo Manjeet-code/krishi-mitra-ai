@@ -454,7 +454,7 @@ const getFertilizerAdvice = async () => {
     marginBottom: "10px",
   }}
 >
-  🌾 Krishi Mitra AI
+  🌾 KrishiMitra AI
 </h1>
 
 <p

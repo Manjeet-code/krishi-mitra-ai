@@ -106,7 +106,7 @@ const Features = () => {
               lineHeight: "32px",
             }}
           >
-            Krishi Mitra AI combines Artificial Intelligence, Weather,
+            KrishiMitra AI combines Artificial Intelligence, Weather,
             Voice Technology and Agriculture into one powerful platform.
           </p>
         </div>

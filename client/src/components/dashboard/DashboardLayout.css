@@ -375,3 +375,42 @@ section{
 
 
 }
+
+/* =========================
+   MARKDOWN & RESULT STYLING
+========================= */
+
+.crop-result-text,
+.fertilizer-result-text,
+.result-content,
+.chat-message,
+.scheme-content {
+  line-height: 1.35 !important;
+}
+
+.crop-result-text p,
+.fertilizer-result-text p,
+.result-content p,
+.chat-message p,
+.scheme-content p {
+  margin-top: 0 !important;
+  margin-bottom: 6px !important;
+}
+
+.crop-result-text ul,
+.fertilizer-result-text ul,
+.result-content ul,
+.chat-message ul,
+.scheme-content ul {
+  margin-top: 4px !important;
+  margin-bottom: 8px !important;
+  padding-left: 20px !important;
+}
+
+.crop-result-text li,
+.fertilizer-result-text li,
+.result-content li,
+.chat-message li,
+.scheme-content li {
+  margin-bottom: 4px !important;
+}

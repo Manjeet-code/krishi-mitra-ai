@@ -3,12 +3,12 @@ import { FaChevronDown } from "react-icons/fa";
 
 const faqData = [
   {
-    question: "What is Krishi Mitra AI?",
+    question: "What is KrishiMitra AI?",
     answer:
-      "Krishi Mitra AI is an AI-powered agriculture assistant that helps farmers with crop recommendations, weather forecasting, disease detection, mandi prices and voice-based support.",
+      "KrishiMitra AI is an AI-powered agriculture assistant that helps farmers with crop recommendations, weather forecasting, disease detection, mandi prices and voice-based support.",
   },
   {
-    question: "Is Krishi Mitra AI free to use?",
+    question: "Is KrishiMitra AI free to use?",
     answer:
       "Yes. The basic features are completely free for farmers. Premium AI features can be introduced in future versions.",
   },
@@ -25,7 +25,7 @@ const faqData = [
   {
     question: "Does it provide live weather updates?",
     answer:
-      "Yes. Krishi Mitra AI fetches live weather information and forecasts using weather APIs.",
+      "Yes. KrishiMitra AI fetches live weather information and forecasts using weather APIs.",
   },
   {
     question: "Can it detect crop diseases?",
@@ -84,7 +84,7 @@ const FAQ = () => {
               marginTop: "20px",
             }}
           >
-            Everything you need to know about Krishi Mitra AI.
+            Everything you need to know about KrishiMitra AI.
           </p>
         </div>
 

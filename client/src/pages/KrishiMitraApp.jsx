@@ -7,10 +7,10 @@ import SpeechRecognition, {
 
 // Dashboard Layout
 import DashboardLayout from "../components/dashboard/DashboardLayout";
-import DashboardCards from "../components/dashboard/DashboardCards";
 import DashboardSidebar from "../components/dashboard/DashboardSidebar";
 import DashboardHeader from "../components/dashboard/DashboardHeader";
 import DashboardBanner from "../components/dashboard/DashboardBanner";
+import SettingsModal from "../components/dashboard/SettingsModal";
 
 // Dashboard Sections
 import ChatSection from "../components/dashboard/ChatSection";
@@ -34,6 +34,9 @@ const KrishiMitraApp = () => {
   ALL STATES WILL COME HERE
   =====================================================
   */
+  const [showSettings, setShowSettings] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
    // ============================
   // CHAT STATES
   // ============================
@@ -136,6 +139,16 @@ const KrishiMitraApp = () => {
   }, [location]);
 
   // ============================
+  // SETTINGS MODAL EVENT
+  // ============================
+
+  useEffect(() => {
+    const handleOpenSettings = () => setShowSettings(true);
+    window.addEventListener("open-settings", handleOpenSettings);
+    return () => window.removeEventListener("open-settings", handleOpenSettings);
+  }, []);
+
+  // ============================
   // START VOICE
   // ============================
 
@@ -178,7 +191,7 @@ const askQuestion = async (customQuestion = null) => {
   try {
 
     const res = await axios.post(
-      "https://krishi-mitra-ai-backend.onrender.com/chat",
+      "http://localhost:5000/chat",
       {
         question: finalQuestion,
       }
@@ -235,7 +248,7 @@ const getWeather = async () => {
 
   try {
     const { data } = await axios.get(
-      `https://krishi-mitra-ai-backend.onrender.com/weather/${city}`
+      `http://localhost:5000/weather/${city}`
     );
 
     setWeather(data);
@@ -253,7 +266,7 @@ const recommendCrop = async () => {
   try {
 
     const res = await axios.post(
-      "https://krishi-mitra-ai-backend.onrender.com/crop-recommend",
+      "http://localhost:5000/crop-recommend",
       {
         soilType,
         temperature,
@@ -286,7 +299,7 @@ const detectDisease = async () => {
   try {
 
     const res = await axios.post(
-      "https://krishi-mitra-ai-backend.onrender.com/detect-disease",
+      "http://localhost:5000/detect-disease",
       formData
     );
 
@@ -311,7 +324,7 @@ const getMarketPrice = async () => {
   try {
 
     const res = await axios.get(
-      `https://krishi-mitra-ai-backend.onrender.com/market-price/${cropName}`
+      `http://localhost:5000/market-price/${cropName}`
     );
 
     setMarketPrice(res.data.reply);
@@ -333,7 +346,7 @@ const getFertilizerAdvice = async () => {
   try {
 
     const res = await axios.post(
-      "https://krishi-mitra-ai-backend.onrender.com/fertilizer",
+      "http://localhost:5000/fertilizer",
       {
         crop: fertilizerCrop,
         soil: fertilizerSoil,
@@ -360,7 +373,7 @@ const getSchemes = async () => {
   try {
 
     const res = await axios.get(
-      "https://krishi-mitra-ai-backend.onrender.com/government-schemes"
+      "http://localhost:5000/government-schemes"
     );
 
     setSchemes(res.data.reply);
@@ -374,14 +387,12 @@ const getSchemes = async () => {
 };
 
 return (
-
+  <>
 <DashboardLayout
-    sidebar={<DashboardSidebar />}
-    header={<DashboardHeader />}
+    sidebar={<DashboardSidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />}
+    header={<DashboardHeader isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />}
     banner={<DashboardBanner />}
 >
-
-    <DashboardCards />
 
     <ChatSection
   question={question}
@@ -446,6 +457,8 @@ return (
  <DashboardFooter />
  
   </DashboardLayout>
+  {showSettings && <SettingsModal onClose={() => setShowSettings(false)} />}
+  </>
 
 );
 

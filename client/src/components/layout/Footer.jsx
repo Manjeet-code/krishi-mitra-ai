@@ -9,6 +9,7 @@ import {
   FaGlobe,
   FaArrowUp,
 } from "react-icons/fa";
+import Logo from "../common/Logo";
 
 const Footer = () => {
   return (
@@ -42,9 +43,11 @@ const Footer = () => {
                 color: "#22C55E",
                 marginBottom: "20px",
                 fontSize: "32px",
+                display: "flex",
+                alignItems: "center",
               }}
             >
-              🌾 Krishi Mitra AI
+              <Logo /> KrishiMitra AI
             </h2>
 
             <p
@@ -199,7 +202,7 @@ const Footer = () => {
       fontSize: "14px",
     }}
   >
-    © {new Date().getFullYear()} Krishi Mitra AI. All Rights Reserved.
+    © {new Date().getFullYear()} KrishiMitra AI. All Rights Reserved.
   </div>
 
 {/* Center */}

@@ -640,6 +640,26 @@
 
 }
 
+.scheme-result-text a {
+    display: inline-block;
+    color: #ffffff;
+    background: #16a34a;
+    padding: 6px 14px;
+    margin: 6px 0;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(22, 163, 74, 0.2);
+}
+
+.scheme-result-text a:hover {
+    background: #15803d;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(22, 163, 74, 0.3);
+}
+
 .scheme-result-text blockquote{
 
     margin:18px 0;

@@ -51,7 +51,7 @@ const Hero = () => {
 
                 <br />
 
-                <span>with Krishi Mitra AI</span>
+                <span>with KrishiMitra AI</span>
 
               </h1>
 
@@ -170,7 +170,7 @@ const Hero = () => {
 
     <img
       src={heroImage}
-      alt="Krishi Mitra AI"
+      alt="KrishiMitra AI"
       className="hero-img"
     />
 

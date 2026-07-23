@@ -1,7 +1,6 @@
 import "./DashboardFooter.css";
 
 import {
-  FaLeaf,
   FaGithub,
   FaLinkedin,
   FaEnvelope,
@@ -10,6 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 import { FaHome } from "react-icons/fa";
+import Logo from "../common/Logo";
 
 export default function DashboardFooter() {
   const navigate = useNavigate();
@@ -21,11 +21,10 @@ export default function DashboardFooter() {
         <div className="km-footer-brand">
 
           <div className="footer-logo">
-            <FaLeaf />
+            <Logo />
           </div>
-
           <div>
-            <h3>Krishi Mitra AI</h3>
+            <h3>KrishiMitra AI</h3>
             <p>
               Smart Farming • AI Powered • Future Ready
             </p>
@@ -67,7 +66,7 @@ export default function DashboardFooter() {
 <div className="km-footer-bottom">
 
   <p>
-    © {new Date().getFullYear()} Krishi Mitra AI. All Rights Reserved.
+    © {new Date().getFullYear()} KrishiMitra AI. All Rights Reserved.
   </p>
 
   <p className="footer-credit">

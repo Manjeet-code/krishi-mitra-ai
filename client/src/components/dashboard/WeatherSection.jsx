@@ -9,6 +9,7 @@ import {
   FaTint,
   FaWind,
   FaCloud,
+  FaCloudSun,
 } from "react-icons/fa";
 
 export default function WeatherSection() {
@@ -25,7 +26,7 @@ export default function WeatherSection() {
       setError("");
 
       const { data } = await axios.get(
-        `https://krishi-mitra-ai-backend.onrender.com/weather/${city}`
+        `http://localhost:5000/weather/${city}`
       );
 
       setWeather(data);
@@ -47,7 +48,7 @@ export default function WeatherSection() {
 
         <div>
 
-          <h2>🌤 Weather Forecast</h2>
+          <h2><FaCloudSun style={{ color: "#f59e0b", marginRight: "10px" }} />Weather Forecast</h2>
 
           <p>
             Get real-time weather updates for your city
