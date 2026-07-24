@@ -293,8 +293,10 @@ const detectDisease = async () => {
 
   if (!image) return;
 
-  const formData = new FormData();
+  setDiseaseResult(null);
+  setLoading(true);
 
+  const formData = new FormData();
   formData.append("image", image);
 
   try {
@@ -309,7 +311,10 @@ const detectDisease = async () => {
   } catch (error) {
 
     console.log(error);
+    setDiseaseResult(`❌ Error: ${error.response?.data?.error || "Failed to detect disease"}`);
 
+  } finally {
+    setLoading(false);
   }
 
 };
