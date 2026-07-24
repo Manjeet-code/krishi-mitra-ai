@@ -452,42 +452,34 @@ app.post(
         });
       }
 
-      // Real ML Logic using Hugging Face (Vision) + Groq (Text)
+      // Real ML Logic using Groq Vision AI (Because Groq API is confirmed working on Render)
+      const base64Image = req.file.buffer.toString("base64");
+      // Use mime type dynamically
+      const mimeType = req.file.mimetype || "image/jpeg";
       
-      // 1. Send image to Hugging Face Plant Disease Model
-      const hfResponse = await axios.post(
-        "https://api-inference.huggingface.co/models/linkanjarad/mobilenet_v2_m54_plant_disease",
-        req.file.buffer,
-        {
-          headers: {
-            Authorization: `Bearer ${process.env.HUGGINGFACE_API_KEY}`,
-            "Content-Type": req.file.mimetype,
-          },
-        }
-      );
-
-      // Extract the highest confidence label
-      const diseaseLabel = hfResponse.data[0].label;
-
-      // 2. Ask Groq to generate a professional markdown report about this disease
-      const prompt = `
-You are an expert agricultural scientist. An AI vision model has detected the following condition on a farmer's crop leaf: "${diseaseLabel}".
-If the label indicates it is healthy, state that the crop is healthy and give basic care tips.
-Otherwise, provide:
-1. Disease Name (Make it sound natural, not like a code label)
-2. Cause of the disease
-3. Recommended Treatment
-4. Farming Tips
-
+      const promptText = `
+You are an expert agricultural scientist. Analyze this plant leaf image.
+Identify any disease, its cause, and suggest a treatment.
+If it is a healthy leaf, just state that it is healthy and give basic care tips.
 Format the output strictly as a professional bulleted list using markdown. 
 Do not use long paragraphs. Keep it extremely concise and farmer-friendly.
 `;
 
       const result = await groq.chat.completions.create({
-        model: "llama-3.3-70b-versatile",
+        model: "llama-3.2-90b-vision-preview",
         messages: [
-          { role: "system", content: "You are an agriculture expert." },
-          { role: "user", content: prompt }
+          {
+            role: "user",
+            content: [
+              { type: "text", text: promptText },
+              {
+                type: "image_url",
+                image_url: {
+                  url: `data:${mimeType};base64,${base64Image}`,
+                },
+              },
+            ],
+          },
         ],
       });
 
@@ -496,9 +488,9 @@ Do not use long paragraphs. Keep it extremely concise and farmer-friendly.
       });
 
     } catch (error) {
-      console.log("AI Detection Error:", error.response?.data || error.message);
+      console.log("Groq Vision Error:", error);
       res.status(500).json({
-        error: "AI detection failed. Make sure HUGGINGFACE_API_KEY is valid and the model is loaded.",
+        error: "AI detection failed. Groq Vision encountered an error.",
       });
     }
   }
