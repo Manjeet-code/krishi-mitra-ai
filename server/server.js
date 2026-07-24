@@ -68,9 +68,9 @@ app.use("/api/auth", require("./routes/authRoutes"));
 
 app.get("/", (req, res) => {
 
-res.send(
-  "🌾 KrishiMitra AI Backend Running"
-);
+  res.send(
+    "🌾 KrishiMitra AI Backend Running"
+  );
 });
 
 // ======================================
@@ -150,14 +150,14 @@ app.get(
       const data =
         weatherRes.data;
 
-res.json({
-  city: data.name,
-  temperature: data.main.temp,
-  humidity: data.main.humidity,
-  condition: data.weather[0].description,
-  windSpeed: data.wind.speed,
-  icon: data.weather[0].icon,
-});
+      res.json({
+        city: data.name,
+        temperature: data.main.temp,
+        humidity: data.main.humidity,
+        condition: data.weather[0].description,
+        windSpeed: data.wind.speed,
+        icon: data.weather[0].icon,
+      });
 
     } catch (error) {
 
@@ -456,7 +456,7 @@ app.post(
       const base64Image = req.file.buffer.toString("base64");
       // Use mime type dynamically
       const mimeType = req.file.mimetype || "image/jpeg";
-      
+
       const promptText = `
 You are an expert agricultural scientist. Analyze this plant leaf image.
 Identify any disease, its cause, and suggest a treatment.
