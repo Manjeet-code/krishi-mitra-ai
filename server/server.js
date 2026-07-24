@@ -452,11 +452,10 @@ app.post(
         });
       }
 
-      // Real ML Logic using Groq Vision AI (Because Groq API is confirmed working on Render)
+      // Real ML Logic using Gemini Vision AI (Groq Vision is decommissioned and HF is blocked)
       const base64Image = req.file.buffer.toString("base64");
-      // Use mime type dynamically
       const mimeType = req.file.mimetype || "image/jpeg";
-
+      
       const promptText = `
 You are an expert agricultural scientist. Analyze this plant leaf image.
 Identify any disease, its cause, and suggest a treatment.
@@ -465,32 +464,26 @@ Format the output strictly as a professional bulleted list using markdown.
 Do not use long paragraphs. Keep it extremely concise and farmer-friendly.
 `;
 
-      const result = await groq.chat.completions.create({
-        model: "llama-3.2-11b-vision-preview",
-        messages: [
-          {
-            role: "user",
-            content: [
-              { type: "text", text: promptText },
-              {
-                type: "image_url",
-                image_url: {
-                  url: `data:${mimeType};base64,${base64Image}`,
-                },
-              },
-            ],
-          },
-        ],
-      });
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      const imagePart = {
+        inlineData: {
+          data: base64Image,
+          mimeType: mimeType,
+        },
+      };
+
+      const result = await model.generateContent([promptText, imagePart]);
+      const response = await result.response;
+      const text = response.text();
 
       res.json({
-        message: result.choices[0].message.content,
+        message: text,
       });
 
     } catch (error) {
-      console.log("Groq Vision Error:", error);
+      console.log("Gemini Vision Error:", error);
       res.status(500).json({
-        error: "AI detection failed. Groq Vision encountered an error.",
+        error: "AI detection failed. Make sure your GEMINI_API_KEY starts with AIza... and is valid.",
       });
     }
   }
