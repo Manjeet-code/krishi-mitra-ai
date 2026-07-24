@@ -1,5 +1,8 @@
 const nodemailer = require("nodemailer");
+const dns = require("dns");
 
+// Force IPv4 resolution. Render sometimes fails on IPv6 for Gmail.
+dns.setDefaultResultOrder("ipv4first");
 const sendEmail = async (options) => {
   // Create a transporter using Gmail SMTP
   const transporter = nodemailer.createTransport({
