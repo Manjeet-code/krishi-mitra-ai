@@ -6,7 +6,10 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const axios = require("axios");
 const multer = require("multer");
+const dns = require("dns");
 
+// Fix IPv6 DNS resolution issues on Render
+dns.setDefaultResultOrder('ipv4first');
 
 dotenv.config();
 
