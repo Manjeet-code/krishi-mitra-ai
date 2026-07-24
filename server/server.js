@@ -449,71 +449,37 @@ app.post(
         });
       }
 
-      // Simple mock logic
-
-      const diseases = [
-
-        {
-          name: "Leaf Blight",
-
-          cause:
-            "Fungal infection due to humidity",
-
-          treatment:
-            "Use copper-based fungicide spray",
+      // Real ML Logic using Gemini 1.5 Flash Vision
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      const base64Image = req.file.buffer.toString("base64");
+      
+      const imagePart = {
+        inlineData: {
+          data: base64Image,
+          mimeType: req.file.mimetype,
         },
+      };
 
-        {
-          name: "Brown Spot",
+      const prompt = `
+You are an expert agricultural scientist. Analyze this plant leaf image.
+Identify any disease, its cause, and suggest a treatment.
+If it is a healthy leaf, just state that it is healthy and give basic care tips.
+Format the output strictly as a professional bulleted list using markdown. 
+Do not use long paragraphs. Keep it extremely concise and farmer-friendly.
+`;
 
-          cause:
-            "Fungal disease due to poor soil nutrition",
-
-          treatment:
-            "Apply balanced NPK fertilizer",
-        },
-
-        {
-          name: "Rice Blast",
-
-          cause:
-            "Fungus in high moisture conditions",
-
-          treatment:
-            "Use resistant seed varieties and fungicide",
-        },
-      ];
-
-      const random =
-        diseases[
-          Math.floor(
-            Math.random() *
-              diseases.length
-          )
-        ];
+      const result = await model.generateContent([prompt, imagePart]);
+      const response = await result.response;
+      const text = response.text();
 
       res.json({
-        message: `
-# 🌿 Plant Disease Detection Result
-
-- **🦠 Disease**: ${random.name}
-- **📌 Cause**: ${random.cause}
-- **💊 Treatment**: ${random.treatment}
-
-## 🛡 Advice
-- Regular monitoring of crops
-- Avoid overwatering
-- Use healthy seeds
-`,
+        message: text,
       });
 
     } catch (error) {
-
-      console.log(error);
-
+      console.log("Gemini Vision Error:", error);
       res.status(500).json({
-        error:
-          "Mock AI detection failed",
+        error: "AI detection failed. Make sure Gemini API Key is valid.",
       });
     }
   }
