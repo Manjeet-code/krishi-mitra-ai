@@ -466,7 +466,7 @@ Do not use long paragraphs. Keep it extremely concise and farmer-friendly.
 `;
 
       const result = await groq.chat.completions.create({
-        model: "llama-3.2-90b-vision-preview",
+        model: "llama-3.2-11b-vision-preview",
         messages: [
           {
             role: "user",
