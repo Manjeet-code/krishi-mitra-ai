@@ -450,7 +450,7 @@ app.post(
       }
 
       // Real ML Logic using Gemini 1.5 Flash Vision
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
       const base64Image = req.file.buffer.toString("base64");
       
       const imagePart = {
