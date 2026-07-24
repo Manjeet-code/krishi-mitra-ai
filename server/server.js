@@ -464,7 +464,7 @@ Format the output strictly as a professional bulleted list using markdown.
 Do not use long paragraphs. Keep it extremely concise and farmer-friendly.
 `;
 
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      const model = genAI.getGenerativeModel({ model: "gemini-3.6-flash" });
       const imagePart = {
         inlineData: {
           data: base64Image,
