@@ -110,7 +110,7 @@ Instructions:
         ],
 
         model:
-          "llama-3.3-70b-versatile",
+          "openai/gpt-oss-120b",
       });
 
     res.json({
@@ -196,7 +196,7 @@ Include:
       await groq.chat.completions.create({
 
         model:
-          "llama-3.3-70b-versatile",
+          "openai/gpt-oss-120b",
 
         messages: [
 
@@ -280,7 +280,7 @@ Format the output strictly as a professional bulleted list using markdown. Do no
           ],
 
           model:
-            "llama-3.3-70b-versatile",
+            "openai/gpt-oss-120b",
         });
 
       res.json({
@@ -335,7 +335,7 @@ Format the output strictly as a professional bulleted list using markdown. Keep 
       await groq.chat.completions.create({
 
         model:
-          "llama-3.3-70b-versatile",
+          "openai/gpt-oss-120b",
 
         messages: [
 
@@ -399,7 +399,7 @@ Format the output strictly as a professional bulleted list using markdown. Keep 
       await groq.chat.completions.create({
 
         model:
-          "llama-3.3-70b-versatile",
+          "openai/gpt-oss-120b",
 
         messages: [
 
@@ -488,6 +488,81 @@ Do not use long paragraphs. Keep it extremely concise and farmer-friendly.
     }
   }
 );
+
+// ======================================
+// LOCATION-BASED SMART ADVICE
+// ======================================
+
+app.post("/location-advice", async (req, res) => {
+  try {
+    const { lat, lng } = req.body;
+
+    if (!lat || !lng) {
+      return res.status(400).json({ error: "Latitude and Longitude are required" });
+    }
+
+    // 1. Reverse Geocoding (OpenWeatherMap)
+    const geoRes = await axios.get(
+      `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lng}&limit=1&appid=${process.env.WEATHER_API_KEY}`
+    );
+    const locationName = geoRes.data[0] ? `${geoRes.data[0].name}, ${geoRes.data[0].state || ''}, ${geoRes.data[0].country}` : "Unknown Location";
+
+    // 2. Weather Data (OpenWeatherMap)
+    const weatherRes = await axios.get(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${process.env.WEATHER_API_KEY}&units=metric`
+    );
+    const weatherData = weatherRes.data;
+    const weatherDesc = weatherData.weather[0].description;
+    const temp = weatherData.main.temp;
+    const humidity = weatherData.main.humidity;
+
+    // 3. AI Prompt Generation
+    const prompt = `
+The farmer is located at Coordinates: ${lat}, ${lng} (Region: ${locationName}).
+Current Weather: ${weatherDesc}, Temperature: ${temp}°C, Humidity: ${humidity}%.
+
+Based on this geographic location and weather, infer the typical soil type and climate of this region. 
+Then, provide a comprehensive farming advice report covering:
+1. 🌾 Suitable Crops
+2. 🌱 Soil Analysis
+3. 💧 Irrigation Advice
+4. 📈 Crop Suitability
+5. ⚠️ Risk (Weather/Pests)
+
+Format the entire output strictly as a professional bulleted list using markdown. Do not write long paragraphs. Keep it extremely concise and farmer-friendly. Use emojis for headings.
+`;
+
+    const chatCompletion = await groq.chat.completions.create({
+      messages: [
+        {
+          role: "system",
+          content: "You are an expert agriculture AI assistant.",
+        },
+        {
+          role: "user",
+          content: prompt,
+        },
+      ],
+      model: "openai/gpt-oss-120b",
+    });
+
+    res.json({
+      location: locationName,
+      weather: {
+        temp: temp,
+        condition: weatherDesc,
+        humidity: humidity
+      },
+      advice: chatCompletion.choices[0].message.content,
+    });
+
+  } catch (error) {
+    console.error("Location Advice Error:", error);
+    res.status(500).json({
+      error: "Failed to generate location-based advice.",
+    });
+  }
+});
 
 // ======================================
 // SERVER

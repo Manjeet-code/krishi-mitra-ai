@@ -92,7 +92,7 @@ Krishi Mitra AI is an AI-powered smart agriculture assistant designed to help fa
 
 ### AI & APIs
 
-* Groq API (Llama 3.3 70B Versatile)
+* Groq API (GPT OSS 120B)
 * OpenWeatherMap API
 * Google Gemini API (configured for future enhancements)
 
