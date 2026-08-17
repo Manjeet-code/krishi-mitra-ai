@@ -495,22 +495,36 @@ Do not use long paragraphs. Keep it extremely concise and farmer-friendly.
 
 app.post("/location-advice", async (req, res) => {
   try {
-    const { lat, lng } = req.body;
+    const { lat, lng, city } = req.body;
 
-    if (!lat || !lng) {
-      return res.status(400).json({ error: "Latitude and Longitude are required" });
+    if (!city && (!lat || !lng)) {
+      return res.status(400).json({ error: "Please provide either a city name or coordinates." });
     }
 
-    // 1. Reverse Geocoding (OpenWeatherMap)
-    const geoRes = await axios.get(
-      `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lng}&limit=1&appid=${process.env.WEATHER_API_KEY}`
-    );
-    const locationName = geoRes.data[0] ? `${geoRes.data[0].name}, ${geoRes.data[0].state || ''}, ${geoRes.data[0].country}` : "Unknown Location";
+    let weatherRes;
+    let locationName;
+    let finalLat, finalLng;
 
-    // 2. Weather Data (OpenWeatherMap)
-    const weatherRes = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${process.env.WEATHER_API_KEY}&units=metric`
-    );
+    if (city) {
+      weatherRes = await axios.get(
+        `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${process.env.WEATHER_API_KEY}&units=metric`
+      );
+      locationName = `${weatherRes.data.name}, ${weatherRes.data.sys.country}`;
+      finalLat = weatherRes.data.coord.lat;
+      finalLng = weatherRes.data.coord.lon;
+    } else {
+      const geoRes = await axios.get(
+        `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lng}&limit=1&appid=${process.env.WEATHER_API_KEY}`
+      );
+      locationName = geoRes.data[0] ? `${geoRes.data[0].name}, ${geoRes.data[0].state || ''}, ${geoRes.data[0].country}` : "Unknown Location";
+      
+      weatherRes = await axios.get(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${process.env.WEATHER_API_KEY}&units=metric`
+      );
+      finalLat = lat;
+      finalLng = lng;
+    }
+
     const weatherData = weatherRes.data;
     const weatherDesc = weatherData.weather[0].description;
     const temp = weatherData.main.temp;
@@ -518,7 +532,7 @@ app.post("/location-advice", async (req, res) => {
 
     // 3. AI Prompt Generation
     const prompt = `
-The farmer is located at Coordinates: ${lat}, ${lng} (Region: ${locationName}).
+The farmer is located at Coordinates: ${finalLat}, ${finalLng} (Region: ${locationName}).
 Current Weather: ${weatherDesc}, Temperature: ${temp}°C, Humidity: ${humidity}%.
 
 Based on this geographic location and weather, infer the typical soil type and climate of this region. 

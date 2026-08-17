@@ -17,6 +17,7 @@ import {
   FaCircle,
   FaHome,
   FaTimes,
+  FaMapMarkerAlt,
 } from "react-icons/fa";
 
 import { useLocation } from "react-router-dom";
@@ -26,6 +27,11 @@ import { useLocation } from "react-router-dom";
       id: "dashboard",
       label: "Dashboard",
       icon: <FaHome />,
+    },
+    {
+      id: "location-advice",
+      label: "Smart Advice",
+      icon: <FaMapMarkerAlt />,
     },
     {
       id: "chat",
@@ -151,12 +157,6 @@ export default function DashboardSidebar({ isSidebarOpen, setIsSidebarOpen }) {
 
   }, []);
 
-  useEffect(() => {
-    const activeBtn = document.querySelector('.km-sidebar__menu button.active');
-    if (activeBtn) {
-      activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-  }, [activeSection]);
 
   useEffect(() => {
   if (!location.hash) return;

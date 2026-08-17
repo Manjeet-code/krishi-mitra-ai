@@ -38,6 +38,8 @@ export default function DashboardFooter() {
 
           <a href="#chat">AI Chat</a>
 
+          <a href="#location-advice">Smart Advice</a>
+
           <a href="#weather">Weather</a>
 
           <a href="#crop">Crop Recommendation</a>

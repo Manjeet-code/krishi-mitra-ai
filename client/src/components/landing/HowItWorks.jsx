@@ -93,14 +93,30 @@ const HowItWorks = () => {
             position: "relative",
           }}
         >
+          {/* Vertical Timeline Line */}
+          <div
+            style={{
+              position: "absolute",
+              top: "40px",
+              bottom: "40px",
+              left: "38px",
+              width: "4px",
+              background: "linear-gradient(to bottom, #22C55E, #E2E8F0)",
+              zIndex: 0,
+              borderRadius: "4px",
+            }}
+          />
+
           {steps.map((step, index) => (
             <div
               key={index}
               style={{
                 display: "flex",
-                gap: "30px",
-                marginBottom: "50px",
+                gap: "40px",
+                marginBottom: index === steps.length - 1 ? "0" : "60px",
                 alignItems: "flex-start",
+                position: "relative",
+                zIndex: 1,
               }}
             >
               <div
@@ -114,7 +130,8 @@ const HowItWorks = () => {
                   alignItems: "center",
                   color: "#fff",
                   fontSize: "28px",
-                  boxShadow: "0 15px 40px rgba(22,163,74,.25)",
+                  boxShadow: "0 10px 25px rgba(22,163,74,.3)",
+                  border: "5px solid #F8FAFC",
                 }}
               >
                 {step.icon}

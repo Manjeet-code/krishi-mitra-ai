@@ -21,12 +21,13 @@ import DiseaseDetection from "../components/dashboard/DiseaseDetection";
 import MarketPrice from "../components/dashboard/MarketPrice";
 import FertilizerCard from "../components/dashboard/FertilizerCard";
 import GovernmentSchemes from "../components/dashboard/GovernmentSchemes";
+import LocationAdvice from "../components/dashboard/LocationAdvice";
 import DashboardFooter from "../components/dashboard/DashboardFooter";
 
 
 const KrishiMitraApp = () => {
 
-//  const navigate = useNavigate();
+  //  const navigate = useNavigate();
 
   const location = useLocation();
 
@@ -38,7 +39,7 @@ const KrishiMitraApp = () => {
   const [showSettings, setShowSettings] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-   // ============================
+  // ============================
   // CHAT STATES
   // ============================
 
@@ -170,303 +171,305 @@ const KrishiMitraApp = () => {
   ALL FUNCTIONS WILL COME HERE
   =====================================================
   */
- // ============================
-// ASK AI
-// ============================
+  // ============================
+  // ASK AI
+  // ============================
 
-const askQuestion = async (customQuestion = null) => {
+  const askQuestion = async (customQuestion = null) => {
 
-  const finalQuestion = customQuestion || question;
+    const finalQuestion = customQuestion || question;
 
-  if (!finalQuestion.trim()) return;
+    if (!finalQuestion.trim()) return;
 
-  const userMessage = {
-    type: "user",
-    text: finalQuestion,
+    const userMessage = {
+      type: "user",
+      text: finalQuestion,
+    };
+
+    setMessages((prev) => [...prev, userMessage]);
+
+    setLoading(true);
+
+    try {
+
+      const res = await axios.post(
+        `${API_URL}/chat`,
+        {
+          question: finalQuestion,
+        }
+      );
+
+      const aiText =
+        typeof res.data.reply === "string"
+          ? res.data.reply
+          : JSON.stringify(res.data.reply);
+
+      setMessages((prev) => [
+        ...prev,
+        {
+          type: "ai",
+          text: aiText,
+        },
+      ]);
+
+      const speech =
+        new SpeechSynthesisUtterance(aiText);
+
+      speech.lang = "hi-IN";
+
+      window.speechSynthesis.speak(speech);
+
+    } catch (error) {
+
+      console.log(error);
+
+      setMessages((prev) => [
+        ...prev,
+        {
+          type: "ai",
+          text: "❌ Failed to get AI response.",
+        },
+      ]);
+
+    }
+
+    setQuestion("");
+
+    resetTranscript();
+
+    setLoading(false);
+
   };
 
-  setMessages((prev) => [...prev, userMessage]);
+  // ============================
+  // WEATHER
+  // ============================
 
-  setLoading(true);
+  const getWeather = async () => {
+    if (!city.trim()) return;
 
-  try {
+    try {
+      const { data } = await axios.get(
+        `${API_URL}/weather/${city}`
+      );
 
-    const res = await axios.post(
-      `${API_URL}/chat`,
-      {
-        question: finalQuestion,
-      }
-    );
+      setWeather(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-    const aiText =
-      typeof res.data.reply === "string"
-        ? res.data.reply
-        : JSON.stringify(res.data.reply);
+  // ============================
+  // CROP RECOMMENDATION
+  // ============================
 
-    setMessages((prev) => [
-      ...prev,
-      {
-        type: "ai",
-        text: aiText,
-      },
-    ]);
+  const recommendCrop = async () => {
 
-    const speech =
-      new SpeechSynthesisUtterance(aiText);
+    try {
 
-    speech.lang = "hi-IN";
+      const res = await axios.post(
+        `${API_URL}/crop-recommend`,
+        {
+          soilType,
+          temperature,
+          rainfall,
+        }
+      );
 
-    window.speechSynthesis.speak(speech);
+      setCropResult(res.data.reply);
 
-  } catch (error) {
+    } catch (error) {
 
-    console.log(error);
+      console.log(error);
 
-    setMessages((prev) => [
-      ...prev,
-      {
-        type: "ai",
-        text: "❌ Failed to get AI response.",
-      },
-    ]);
+    }
 
-  }
+  };
 
-  setQuestion("");
+  // ============================
+  // DISEASE DETECTION
+  // ============================
 
-  resetTranscript();
+  const detectDisease = async () => {
 
-  setLoading(false);
+    if (!image) return;
 
-};
+    setDiseaseResult(null);
+    setLoading(true);
 
-// ============================
-// WEATHER
-// ============================
+    const formData = new FormData();
+    formData.append("image", image);
 
-const getWeather = async () => {
-  if (!city.trim()) return;
+    try {
 
-  try {
-    const { data } = await axios.get(
-      `${API_URL}/weather/${city}`
-    );
+      const res = await axios.post(
+        `${API_URL}/detect-disease`,
+        formData
+      );
 
-    setWeather(data);
-  } catch (error) {
-    console.error(error);
-  }
-};
+      setDiseaseResult(res.data.message);
 
-// ============================
-// CROP RECOMMENDATION
-// ============================
+    } catch (error) {
 
-const recommendCrop = async () => {
+      console.log(error);
+      setDiseaseResult(`❌ Error: ${error.response?.data?.error || "Failed to detect disease"}`);
 
-  try {
+    } finally {
+      setLoading(false);
+    }
 
-    const res = await axios.post(
-      `${API_URL}/crop-recommend`,
-      {
-        soilType,
-        temperature,
-        rainfall,
-      }
-    );
+  };
 
-    setCropResult(res.data.reply);
+  // ============================
+  // MARKET PRICE
+  // ============================
 
-  } catch (error) {
+  const getMarketPrice = async () => {
 
-    console.log(error);
+    if (!cropName) return;
 
-  }
+    try {
 
-};
+      const res = await axios.get(
+        `${API_URL}/market-price/${cropName}`
+      );
 
-// ============================
-// DISEASE DETECTION
-// ============================
+      setMarketPrice(res.data.reply);
 
-const detectDisease = async () => {
+    } catch (error) {
 
-  if (!image) return;
+      console.log(error);
 
-  setDiseaseResult(null);
-  setLoading(true);
+    }
 
-  const formData = new FormData();
-  formData.append("image", image);
+  };
 
-  try {
+  // ============================
+  // FERTILIZER
+  // ============================
 
-    const res = await axios.post(
-      `${API_URL}/detect-disease`,
-      formData
-    );
+  const getFertilizerAdvice = async () => {
 
-    setDiseaseResult(res.data.message);
+    try {
 
-  } catch (error) {
+      const res = await axios.post(
+        `${API_URL}/fertilizer`,
+        {
+          crop: fertilizerCrop,
+          soil: fertilizerSoil,
+          stage: cropStage,
+        }
+      );
 
-    console.log(error);
-    setDiseaseResult(`❌ Error: ${error.response?.data?.error || "Failed to detect disease"}`);
+      setFertilizerResult(res.data.reply);
 
-  } finally {
-    setLoading(false);
-  }
+    } catch (error) {
 
-};
+      console.log(error);
 
-// ============================
-// MARKET PRICE
-// ============================
+    }
 
-const getMarketPrice = async () => {
+  };
 
-  if (!cropName) return;
+  // ============================
+  // GOVERNMENT SCHEMES
+  // ============================
 
-  try {
+  const getSchemes = async () => {
 
-    const res = await axios.get(
-      `${API_URL}/market-price/${cropName}`
-    );
+    try {
 
-    setMarketPrice(res.data.reply);
+      const res = await axios.get(
+        `${API_URL}/government-schemes`
+      );
 
-  } catch (error) {
+      setSchemes(res.data.reply);
 
-    console.log(error);
+    } catch (error) {
 
-  }
+      console.log(error);
 
-};
+    }
 
-// ============================
-// FERTILIZER
-// ============================
+  };
 
-const getFertilizerAdvice = async () => {
+  return (
+    <>
+      <DashboardLayout
+        sidebar={<DashboardSidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />}
+        header={<DashboardHeader isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />}
+        banner={<DashboardBanner />}
+      >
 
-  try {
+        <LocationAdvice />
 
-    const res = await axios.post(
-      `${API_URL}/fertilizer`,
-      {
-        crop: fertilizerCrop,
-        soil: fertilizerSoil,
-        stage: cropStage,
-      }
-    );
-
-    setFertilizerResult(res.data.reply);
-
-  } catch (error) {
-
-    console.log(error);
-
-  }
-
-};
-
-// ============================
-// GOVERNMENT SCHEMES
-// ============================
-
-const getSchemes = async () => {
-
-  try {
-
-    const res = await axios.get(
-      `${API_URL}/government-schemes`
-    );
-
-    setSchemes(res.data.reply);
-
-  } catch (error) {
-
-    console.log(error);
-
-  }
-
-};
-
-return (
-  <>
-<DashboardLayout
-    sidebar={<DashboardSidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />}
-    header={<DashboardHeader isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />}
-    banner={<DashboardBanner />}
->
-
-    <ChatSection
-  question={question}
-  setQuestion={setQuestion}
-  messages={messages}
-  loading={loading}
-  askQuestion={askQuestion}
-  listening={listening}
-  startListening={startListening}
-/>
+        <ChatSection
+          question={question}
+          setQuestion={setQuestion}
+          messages={messages}
+          loading={loading}
+          askQuestion={askQuestion}
+          listening={listening}
+          startListening={startListening}
+        />
 
         <WeatherSection
-      city={city}
-      setCity={setCity}
-      weather={weather}
-      getWeather={getWeather}
-    />
+          city={city}
+          setCity={setCity}
+          weather={weather}
+          getWeather={getWeather}
+        />
 
-    <CropRecommendation
-      soilType={soilType}
-      setSoilType={setSoilType}
-      temperature={temperature}
-      setTemperature={setTemperature}
-      rainfall={rainfall}
-      setRainfall={setRainfall}
-      recommendCrop={recommendCrop}
-      cropResult={cropResult}
-    />
+        <CropRecommendation
+          soilType={soilType}
+          setSoilType={setSoilType}
+          temperature={temperature}
+          setTemperature={setTemperature}
+          rainfall={rainfall}
+          setRainfall={setRainfall}
+          recommendCrop={recommendCrop}
+          cropResult={cropResult}
+        />
 
-    <MarketPrice
-      cropName={cropName}
-      setCropName={setCropName}
-      getMarketPrice={getMarketPrice}
-      marketPrice={marketPrice}
-    />
+        <MarketPrice
+          cropName={cropName}
+          setCropName={setCropName}
+          getMarketPrice={getMarketPrice}
+          marketPrice={marketPrice}
+        />
 
-    
-<FertilizerCard
-  fertilizerCrop={fertilizerCrop}
-  setFertilizerCrop={setFertilizerCrop}
-  fertilizerSoil={fertilizerSoil}
-  setFertilizerSoil={setFertilizerSoil}
-  cropStage={cropStage}
-  setCropStage={setCropStage}
-  fertilizerResult={fertilizerResult}
-  getFertilizerAdvice={getFertilizerAdvice}
-/>
 
-    <DiseaseDetection
-      image={image}
-      preview={preview}
-      setImage={setImage}
-      setPreview={setPreview}
-      detectDisease={detectDisease}
-      diseaseResult={diseaseResult}
-    />
+        <FertilizerCard
+          fertilizerCrop={fertilizerCrop}
+          setFertilizerCrop={setFertilizerCrop}
+          fertilizerSoil={fertilizerSoil}
+          setFertilizerSoil={setFertilizerSoil}
+          cropStage={cropStage}
+          setCropStage={setCropStage}
+          fertilizerResult={fertilizerResult}
+          getFertilizerAdvice={getFertilizerAdvice}
+        />
 
-    <GovernmentSchemes
-      schemes={schemes}
-      getSchemes={getSchemes}
-    />
- <DashboardFooter />
- 
-  </DashboardLayout>
-  {showSettings && <SettingsModal onClose={() => setShowSettings(false)} />}
-  </>
+        <DiseaseDetection
+          image={image}
+          preview={preview}
+          setImage={setImage}
+          setPreview={setPreview}
+          detectDisease={detectDisease}
+          diseaseResult={diseaseResult}
+        />
 
-);
+        <GovernmentSchemes
+          schemes={schemes}
+          getSchemes={getSchemes}
+        />
+        <DashboardFooter />
+
+      </DashboardLayout>
+      {showSettings && <SettingsModal onClose={() => setShowSettings(false)} />}
+    </>
+
+  );
 
 };
 

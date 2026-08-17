@@ -7,7 +7,7 @@ import {
   FaMicrophone,
   FaBug,
   FaRupeeSign,
-  FaChartLine,
+  FaMapMarkerAlt,
   FaEye,
   FaEyeSlash,
   FaCheckCircle,
@@ -41,8 +41,8 @@ const features = [
     description: "Know the latest market prices nearby.",
   },
   {
-    icon: <FaChartLine />,
-    title: "Farm Analytics",
+    icon: <FaMapMarkerAlt />,
+    title: "Location Smart Advice",
     description: "Track performance with smart insights.",
   },
 ];

@@ -14,7 +14,7 @@ import Container from "../../common/Container";
 import Background from "./Background";
 // import Dashboard from "./Dashboard";
 
-import heroImage from "../../../assets/illustrations/heroImage.jpeg";
+import heroImage from "../../../assets/illustrations/ai_farming_features_dashboard.png";
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -80,19 +80,19 @@ const Hero = () => {
 
                 </button>
 
-               <button
-  className="secondary-btn"
-  onClick={() =>
-    window.open(
-      "https://youtube.com/@theUnfilteredManjeet",
-      "_blank",
-      "noopener,noreferrer"
-    )
-  }
->
-  <FaPlay style={{ marginRight: "8px" }} />
-  Watch Demo
-</button>
+                <button
+                  className="secondary-btn"
+                  onClick={() =>
+                    window.open(
+                      "https://youtube.com/@theUnfilteredManjeet",
+                      "_blank",
+                      "noopener,noreferrer"
+                    )
+                  }
+                >
+                  <FaPlay style={{ marginRight: "8px" }} />
+                  Watch Demo
+                </button>
 
               </div>
 
@@ -159,22 +159,22 @@ const Hero = () => {
 
             {/* RIGHT */}
 
-<motion.div
-  className="hero-right"
-  initial={{ opacity: 0, x: 60 }}
-  animate={{ opacity: 1, x: 0 }}
-  transition={{ duration: 0.9 }}
->
+            <motion.div
+              className="hero-right"
+              initial={{ opacity: 0, x: 60 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9 }}
+            >
 
-  <div className="hero-visual">
+              <div className="hero-visual">
 
-    <img
-      src={heroImage}
-      alt="KrishiMitra AI"
-      className="hero-img"
-    />
+                <img
+                  src={heroImage}
+                  alt="KrishiMitra AI"
+                  className="hero-img"
+                />
 
-    {/* <motion.div
+                {/* <motion.div
       className="dashboard-wrapper"
       initial={{ y: 40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
@@ -186,9 +186,9 @@ const Hero = () => {
       <Dashboard />
     </motion.div> */}
 
-  </div>
+              </div>
 
-</motion.div>
+            </motion.div>
 
           </div>
 

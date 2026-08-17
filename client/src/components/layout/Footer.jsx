@@ -10,99 +10,49 @@ import {
   FaArrowUp,
 } from "react-icons/fa";
 import Logo from "../common/Logo";
+import "./Footer.css";
 
 const Footer = () => {
   return (
-    <footer
-      style={{
-        background: "#0F172A",
-        color: "#fff",
-        padding: "80px 0 20px",
-        marginTop: "100px",
-      }}
-    >
+    <footer className="footer-wrapper">
       <div className="container">
-
         {/* Top */}
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "2fr 1fr 1fr 1.5fr",
-            gap: "50px",
-            marginBottom: "60px",
-          }}
-        >
-
+        <div className="footer-top">
           {/* Logo */}
-
           <div>
-
-            <h2
-              style={{
-                color: "#22C55E",
-                marginBottom: "20px",
-                fontSize: "32px",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
+            <h2 className="footer-logo-title">
               <Logo /> KrishiMitra AI
             </h2>
-
-            <p
-              style={{
-                color: "#CBD5E1",
-                lineHeight: "30px",
-              }}
-            >
+            <p className="footer-description">
               India's AI-powered Smart Farming Assistant helping farmers with
               weather forecasting, crop recommendation, disease detection,
               mandi prices and voice-enabled AI support.
             </p>
-
           </div>
 
-{/* Quick Links */}
-
-<div>
-  <h3 style={{ marginBottom: "25px" }}>
-    Quick Links
-  </h3>
-
-  {[
-    { name: "Home", link: "#hero" },
-    { name: "Features", link: "#features" },
-    { name: "How It Works", link: "#how-it-works" },
-    { name: "Testimonials", link: "#testimonials" },
-    { name: "Contact", link: "#footer" },
-  ].map((item) => (
-    <a
-      key={item.name}
-      href={item.link}
-      style={{
-        display: "block",
-        color: "#CBD5E1",
-        marginBottom: "15px",
-        cursor: "pointer",
-        textDecoration: "none",
-        transition: "0.3s",
-      }}
-    >
-      {item.name}
-    </a>
-  ))}
-
-</div>
+          {/* Quick Links */}
+          <div>
+            <h3 className="footer-heading">Quick Links</h3>
+            {[
+              { name: "Home", link: "#hero" },
+              { name: "Features", link: "#features" },
+              { name: "How It Works", link: "#how-it-works" },
+              { name: "Testimonials", link: "#testimonials" },
+              { name: "Contact", link: "#footer" },
+            ].map((item) => (
+              <a
+                key={item.name}
+                href={item.link}
+                className="footer-link"
+              >
+                {item.name}
+              </a>
+            ))}
+          </div>
 
           {/* Features */}
-
           <div>
-
-            <h3 style={{ marginBottom: "25px" }}>
-              Features
-            </h3>
-
+            <h3 className="footer-heading">Features</h3>
             {[
               "AI Chat",
               "Voice Assistant",
@@ -111,190 +61,76 @@ const Footer = () => {
               "Disease Detection",
               "Mandi Prices",
             ].map((item) => (
-              <p
-                key={item}
-                style={{
-                  color: "#CBD5E1",
-                  marginBottom: "15px",
-                }}
-              >
+              <p key={item} className="footer-text">
                 {item}
               </p>
             ))}
-
           </div>
 
           {/* Contact */}
-
           <div>
-
-            <h3 style={{ marginBottom: "25px" }}>
-              Contact
-            </h3>
-
-            <p style={{ marginBottom: "18px" }}>
+            <h3 className="footer-heading">Contact</h3>
+            <p className="footer-contact-item">
               <FaEnvelope /> info@krishimitraai.com
             </p>
-
-            <p style={{ marginBottom: "18px" }}>
+            <p className="footer-contact-item">
               <FaPhone /> +91 9142847934
             </p>
-
-            <p>
+            <p className="footer-contact-item">
               <FaMapMarkerAlt /> India
             </p>
-<div
-  style={{
-    display: "flex",
-    gap: "18px",
-    marginTop: "30px",
-    fontSize: "22px",
-  }}
->
-  <a
-    href="https://3d-portfolio-eight-drab.vercel.app/"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <FaGlobe className="social-icon" />
-  </a>
-
-  <a href="https://Youtube.com/@theUnfilteredManjeet" target="_blank" rel="noreferrer">
-    <FaYoutube className="social-icon" />
-  </a>
-
-  <a href="https://instagram.com/manjeet.explorer" target="_blank" rel="noreferrer">
-    <FaInstagram className="social-icon" />
-  </a>
-
-  <a href="https://www.linkedin.com/in/manjeet-kumar-571981347/" target="_blank" rel="noreferrer">
-    <FaLinkedin className="social-icon" />
-  </a>
-
-  <a href="https://github.com/Manjeet-code" target="_blank" rel="noreferrer">
-    <FaGithub className="social-icon" />
-  </a>
-</div>
-
+            <div className="footer-socials">
+              <a href="https://3d-portfolio-eight-drab.vercel.app/" target="_blank" rel="noopener noreferrer">
+                <FaGlobe className="social-icon" />
+              </a>
+              <a href="https://Youtube.com/@theUnfilteredManjeet" target="_blank" rel="noreferrer">
+                <FaYoutube className="social-icon" />
+              </a>
+              <a href="https://instagram.com/manjeet.explorer" target="_blank" rel="noreferrer">
+                <FaInstagram className="social-icon" />
+              </a>
+              <a href="https://www.linkedin.com/in/manjeet-kumar-571981347/" target="_blank" rel="noreferrer">
+                <FaLinkedin className="social-icon" />
+              </a>
+              <a href="https://github.com/Manjeet-code" target="_blank" rel="noreferrer">
+                <FaGithub className="social-icon" />
+              </a>
+            </div>
           </div>
-
         </div>
 
-{/* Bottom */}
+        {/* Bottom */}
+        <div className="footer-bottom">
+          {/* Left */}
+          <div className="footer-bottom-left">
+            © {new Date().getFullYear()} KrishiMitra AI. All Rights Reserved.
+          </div>
 
-<div
-  style={{
-    marginTop: "20px",
-    paddingTop: "25px",
-    borderTop: "1px solid rgba(255,255,255,.12)",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    flexWrap: "wrap",
-    gap: "20px",
-  }}
->
-  {/* Left */}
+          {/* Center */}
+          <div className="footer-bottom-center">
+            <div className="footer-dev-info">
+              <span>Designed & Developed with</span>
+              <span style={{ color: "#EF4444", fontSize: "16px", animation: "heartbeat 1.5s infinite" }}>
+                ❤️
+              </span>
+              <span>by</span>
+              <span style={{ color: "#22C55E", fontWeight: "700" }}>
+                Manjeet Kumar
+              </span>
+            </div>
+            <div style={{ color: "#94A3B8", fontSize: "13px", marginTop: "4px", fontStyle: "italic" }}>
+              Empowering Farmers Through AI Innovation 🌾
+            </div>
+          </div>
 
-  <div
-    style={{
-      color: "#CBD5E1",
-      fontSize: "14px",
-    }}
-  >
-    © {new Date().getFullYear()} KrishiMitra AI. All Rights Reserved.
-  </div>
-
-{/* Center */}
-
-<div
-  style={{
-    color: "#CBD5E1",
-    fontSize: "14px",
-    textAlign: "center",
-    lineHeight: "1.8",
-  }}
->
-<div
-  style={{
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: "6px",
-    flexWrap: "wrap",
-  }}
->
-  <span>Designed & Developed with</span>
-
-  <span
-    style={{
-      color: "#EF4444",
-      fontSize: "16px",
-      animation: "heartbeat 1.5s infinite",
-    }}
-  >
-    ❤️
-  </span>
-
-  <span>by</span>
-
-  <span
-    style={{
-      color: "#22C55E",
-      fontWeight: "700",
-    }}
-  >
-    Manjeet Kumar
-  </span>
-</div>
-
-  <div
-    style={{
-      color: "#94A3B8",
-      fontSize: "13px",
-      marginTop: "4px",
-      fontStyle: "italic",
-    }}
-  >
-   Empowering Farmers Through AI Innovation 🌾
-  </div>
-</div>
-
-  {/* Right */}
-
-  <button
-    onClick={() =>
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      })
-    }
-    style={{
-      width: "48px",
-      height: "48px",
-      borderRadius: "50%",
-      border: "none",
-      background: "#22C55E",
-      color: "#fff",
-      cursor: "pointer",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      fontSize: "18px",
-      boxShadow: "0 10px 25px rgba(34,197,94,.35)",
-      transition: "0.3s",
-    }}
-    onMouseEnter={(e) => {
-      e.currentTarget.style.transform = "translateY(-4px)";
-    }}
-    onMouseLeave={(e) => {
-      e.currentTarget.style.transform = "translateY(0)";
-    }}
-  >
-    <FaArrowUp />
-  </button>
-</div>
-
+          {/* Right */}
+          <button
+            className="footer-scroll-btn"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            <FaArrowUp />
+          </button>
+        </div>
       </div>
     </footer>
   );

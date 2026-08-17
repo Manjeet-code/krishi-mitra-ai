@@ -5,7 +5,9 @@ import {
   FaLeaf,
   FaRupeeSign,
   FaShieldAlt,
-  FaChartLine,
+  FaMapMarkerAlt,
+  FaCheckCircle,
+  FaTimesCircle,
 } from "react-icons/fa";
 
 const benefits = [
@@ -30,18 +32,19 @@ const benefits = [
     title: "Voice Enabled AI Assistant",
   },
   {
-    icon: <FaChartLine />,
-    title: "Smart Farming Analytics",
+    icon: <FaMapMarkerAlt />,
+    title: "Smart Location Based Advice",
   },
 ];
 
 const comparison = [
-  ["AI Crop Recommendation", "❌", "✅"],
-  ["Weather Forecast", "❌", "✅"],
-  ["Disease Detection", "❌", "✅"],
-  ["Voice Assistant", "❌", "✅"],
-  ["Live Mandi Prices", "❌", "✅"],
-  ["All-in-One Platform", "❌", "✅"],
+  ["AI Crop Recommendation", false, true],
+  ["Weather Forecast", false, true],
+  ["Disease Detection", false, true],
+  ["Voice Assistant", false, true],
+  ["Live Mandi Prices", false, true],
+  ["Location Based Smart Advice", false, true],
+  ["All-in-One Platform", false, true],
 ];
 
 const stats = [
@@ -120,89 +123,87 @@ const WhyChooseUs = () => {
           </p>
         </div>
 
-        {/* Illustration + Benefits */}
+        {/* Premium Benefits Grid */}
 
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "70px",
-            alignItems: "center",
+            gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
+            gap: "35px",
             marginBottom: "100px",
           }}
         >
-          {/* Left */}
+          {benefits.map((item, index) => (
 
-          <div
-            style={{
-              height: "500px",
-              borderRadius: "30px",
-              background:
-                "linear-gradient(135deg,#DCFCE7,#BBF7D0,#86EFAC)",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              fontSize: "150px",
-              boxShadow: "0 30px 70px rgba(22,163,74,.18)",
-            }}
-          >
-            🌾
-          </div>
-
-          {/* Right */}
-
-          <div>
-
-            {benefits.map((item, index) => (
-
+            <div
+              key={index}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "20px",
+                padding: "30px",
+                borderRadius: "20px",
+                background: "#ffffff",
+                border: "1px solid #f1f5f9",
+                boxShadow: "0 10px 30px rgba(0,0,0,.03)",
+                transition: "all 0.3s ease",
+                cursor: "default"
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-5px)";
+                e.currentTarget.style.boxShadow = "0 20px 40px rgba(22,163,74,.08)";
+                e.currentTarget.style.borderColor = "#BBF7D0";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0px)";
+                e.currentTarget.style.boxShadow = "0 10px 30px rgba(0,0,0,.03)";
+                e.currentTarget.style.borderColor = "#f1f5f9";
+              }}
+            >
               <div
-                key={index}
                 style={{
+                  minWidth: "65px",
+                  height: "65px",
+                  borderRadius: "16px",
+                  background: "linear-gradient(135deg, #dcfce7, #bbf7d0)",
+                  color: "#16A34A",
+                  fontSize: "28px",
                   display: "flex",
                   alignItems: "center",
-                  gap: "18px",
-                  marginBottom: "25px",
-                  padding: "22px",
-                  borderRadius: "18px",
-                  background: "#fff",
-                  boxShadow: "0 15px 35px rgba(0,0,0,.06)",
+                  justifyContent: "center",
                 }}
               >
-                <div
+                {item.icon}
+              </div>
+
+              <div>
+
+                <h3
                   style={{
-                    color: "#16A34A",
-                    fontSize: "26px",
+                    margin: 0,
+                    fontSize: "20px",
+                    color: "#0F172A",
+                    fontWeight: "700"
                   }}
                 >
-                  {item.icon}
-                </div>
+                  {item.title}
+                </h3>
 
-                <div>
-
-                  <h3
-                    style={{
-                      margin: 0,
-                    }}
-                  >
-                    {item.title}
-                  </h3>
-
-                  <p
-                    style={{
-                      color: "#64748B",
-                      marginTop: "5px",
-                    }}
-                  >
-                    Powered by Artificial Intelligence
-                  </p>
-
-                </div>
+                <p
+                  style={{
+                    color: "#64748B",
+                    marginTop: "8px",
+                    fontSize: "15px"
+                  }}
+                >
+                  Powered by Artificial Intelligence
+                </p>
 
               </div>
 
-            ))}
+            </div>
 
-          </div>
+          ))}
         </div>
 
         {/* Comparison */}
@@ -212,76 +213,56 @@ const WhyChooseUs = () => {
             background: "#fff",
             borderRadius: "25px",
             padding: "50px",
-            boxShadow: "0 25px 60px rgba(0,0,0,.08)",
-            marginBottom: "80px",
+            boxShadow: "0 20px 50px rgba(0,0,0,.04)",
+            marginBottom: "100px",
+            border: "1px solid #f1f5f9",
           }}
         >
-          <h2
-            style={{
-              textAlign: "center",
-              marginBottom: "40px",
-            }}
-          >
-            Why Farmers Prefer KrishiMitra AI
-          </h2>
+          <div style={{ textAlign: "center", marginBottom: "50px" }}>
+            <h2 style={{ fontSize: "36px", color: "#0F172A", margin: "0 0 15px 0" }}>
+              Why Farmers Prefer KrishiMitra AI
+            </h2>
+            <p style={{ color: "#64748B", fontSize: "18px", margin: 0 }}>
+              See how we stack up against traditional agricultural apps
+            </p>
+          </div>
 
-          <table
-            style={{
-              width: "100%",
-              borderCollapse: "collapse",
-            }}
-          >
-            <thead>
-              <tr
-                style={{
-                  background: "#F1F5F9",
-                }}
-              >
-                <th style={{ padding: "18px" }}>Feature</th>
-                <th>Others</th>
-                <th>KrishiMitra AI</th>
-              </tr>
-            </thead>
-
-            <tbody>
-
-              {comparison.map((row, index) => (
-
-                <tr key={index}>
-
-                  <td
-                    style={{
-                      padding: "18px",
-                      borderBottom: "1px solid #E2E8F0",
-                    }}
-                  >
-                    {row[0]}
-                  </td>
-
-                  <td
-                    style={{
-                      textAlign: "center",
-                    }}
-                  >
-                    {row[1]}
-                  </td>
-
-                  <td
-                    style={{
-                      textAlign: "center",
-                      color: "#16A34A",
-                      fontWeight: "700",
-                    }}
-                  >
-                    {row[2]}
-                  </td>
-
+          <div style={{ overflowX: "auto" }}>
+            <table
+              style={{
+                width: "100%",
+                minWidth: "600px",
+                borderCollapse: "separate",
+                borderSpacing: "0",
+              }}
+            >
+              <thead>
+                <tr>
+                  <th style={{ padding: "20px 25px", textAlign: "left", fontSize: "18px", color: "#334155", borderBottom: "2px solid #e2e8f0" }}>Features</th>
+                  <th style={{ padding: "20px 25px", textAlign: "center", fontSize: "18px", color: "#64748b", borderBottom: "2px solid #e2e8f0", width: "25%" }}>Other Apps</th>
+                  <th style={{ padding: "20px 25px", textAlign: "center", fontSize: "18px", color: "#15803D", background: "#f0fdf4", borderTopLeftRadius: "16px", borderTopRightRadius: "16px", borderBottom: "2px solid #bbf7d0", width: "25%" }}>KrishiMitra AI</th>
                 </tr>
-
-              ))}
-
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {comparison.map((row, index) => {
+                  const isLast = index === comparison.length - 1;
+                  return (
+                    <tr key={index} style={{ transition: "background 0.2s" }} onMouseEnter={e => e.currentTarget.style.background = "#f8fafc"} onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
+                      <td style={{ padding: "22px 25px", borderBottom: isLast ? "none" : "1px solid #f1f5f9", fontSize: "16px", color: "#1e293b", fontWeight: "500" }}>
+                        {row[0]}
+                      </td>
+                      <td style={{ padding: "22px 25px", textAlign: "center", borderBottom: isLast ? "none" : "1px solid #f1f5f9" }}>
+                        {row[1] ? <FaCheckCircle style={{ color: "#10b981", fontSize: "22px" }} /> : <FaTimesCircle style={{ color: "#cbd5e1", fontSize: "22px" }} />}
+                      </td>
+                      <td style={{ padding: "22px 25px", textAlign: "center", background: "#f0fdf4", borderBottom: isLast ? "none" : "1px solid #dcfce7", borderBottomLeftRadius: isLast ? "16px" : "0", borderBottomRightRadius: isLast ? "16px" : "0" }}>
+                        {row[2] ? <FaCheckCircle style={{ color: "#16a34a", fontSize: "24px", filter: "drop-shadow(0 2px 4px rgba(22,163,74,0.2))" }} /> : <FaTimesCircle style={{ color: "#ef4444", fontSize: "24px" }} />}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
 
         {/* Trust */}

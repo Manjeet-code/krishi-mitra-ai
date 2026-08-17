@@ -3,14 +3,21 @@ import {
   FaCloudSun,
   FaMicrophone,
   FaBug,
-  FaChartLine,
   FaRupeeSign,
   FaArrowRight,
+  FaMapMarkerAlt,
 } from "react-icons/fa";
 
 import { useNavigate } from "react-router-dom";
 
 const features = [
+  {
+    icon: <FaMapMarkerAlt />,
+    title: "Location Smart Advice",
+    description:
+      "Get personalized AI farming advice based on your current geographical location or specific city.",
+    target: "location-advice",
+  },
   {
     icon: <FaSeedling />,
     title: "AI Crop Recommendation",
@@ -46,13 +53,6 @@ const features = [
     description:
       "Know the latest market prices from nearby mandis before selling.",
       target: "market",
-  },
-  {
-    icon: <FaChartLine />,
-    title: "Farm Analytics",
-    description:
-      "Track farming performance with intelligent insights and reports.",
-      target: "analytics",
   },
 ];
 

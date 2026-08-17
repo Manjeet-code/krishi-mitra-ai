@@ -17,7 +17,8 @@ import {
   FaChartLine,
   FaFlask,
   FaBug,
-  FaUniversity
+  FaUniversity,
+  FaMapMarkerAlt
 } from "react-icons/fa";
 
 export default function DashboardHeader({ isSidebarOpen, setIsSidebarOpen }) {
@@ -52,6 +53,7 @@ export default function DashboardHeader({ isSidebarOpen, setIsSidebarOpen }) {
 
   const features = [
     { id: "chat", label: "AI Chat", icon: <FaComments style={{ color: "#22c55e" }} /> },
+    { id: "location-advice", label: "Smart Advice", icon: <FaMapMarkerAlt style={{ color: "#10b981" }} /> },
     { id: "weather", label: "Weather Forecast", icon: <FaCloudSun style={{ color: "#3b82f6" }} /> },
     { id: "crop", label: "Crop Recommendation", icon: <FaSeedling style={{ color: "#eab308" }} /> },
     { id: "market", label: "Market Prices", icon: <FaChartLine style={{ color: "#a855f7" }} /> },
